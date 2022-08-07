@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+@import "assets/scss/media-query.scss";
+@import "assets/scss/typography.scss";
+@import "assets/scss/main.scss";
+@import "assets/scss/common.scss";
+
+@import "assets/scss/templates/header.scss";
+@import "assets/scss/templates/page-banner.scss";
+@import "assets/scss/templates/navigation.scss";
+@import "assets/scss/templates/slider.scss";
+@import "assets/scss/templates/backgrounds.scss";
+@import "assets/scss/templates/about.scss";
+@import "assets/scss/templates/service.scss";
+@import "assets/scss/templates/portfolio.scss";
+@import "assets/scss/templates/process.scss";
+@import "assets/scss/templates/pricing.scss";
+@import "assets/scss/templates/blog.scss";
+@import "assets/scss/templates/testimonial.scss";
+@import "assets/scss/templates/contact.scss";
+@import "assets/scss/templates/footer.scss";
+@import "assets/scss/responsive.scss";
