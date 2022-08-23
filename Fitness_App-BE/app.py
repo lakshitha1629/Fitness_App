@@ -3,8 +3,18 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 import os
 import prediction
+from flaskext.mysql import MySQL
 
+mysql = MySQL()
 app = Flask(__name__)
+
+app.config['MYSQL_DATABASE_USER'] = 'rmtuser'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Ayozat@RMT%2023'
+app.config['MYSQL_DATABASE_DB'] = 'test_fitness'
+app.config['MYSQL_DATABASE_HOST'] = '109.228.57.45'
+mysql.init_app(app)
+con = mysql.connect()
+
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
 
