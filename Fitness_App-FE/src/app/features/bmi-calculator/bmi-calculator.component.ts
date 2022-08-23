@@ -46,9 +46,9 @@ export class BmiCalculatorComponent implements OnInit {
   onSubmit() {
     const data =
     {
-      Q1: [(this.formGroup.controls.Q1.value==true) ? 1 : 0],
-      Q2: [(this.formGroup.controls.Q2.value==true) ? 1 : 0],
-      Q3: [(this.formGroup.controls.Q3.value==true) ? 1 : 0],
+      Q1: [this.formGroup.controls.Q1.value],
+      Q2: [this.formGroup.controls.Q2.value],
+      Q3: [this.formGroup.controls.Q3.value],
     }
 
     if (this.formGroup.valid == true) {
