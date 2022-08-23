@@ -17,9 +17,13 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { HttpClientModule } from '@angular/common/http';
-import { DetectDisorderComponent } from './features/detect-disorder/detect-disorder.component';
 import { ImageUploaderModule } from 'ngx-image-uploader-next';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BmiCalculatorComponent } from './features/bmi-calculator/bmi-calculator.component';
+import { PlanScheduleComponent } from './features/plan-schedule/plan-schedule.component';
+import { WorkoutScheduleComponent } from './features/workout-schedule/workout-schedule.component';
+import { LoginComponent } from './features/login/login.component';
+import { RegistrationComponent } from './features/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
     AboutComponent,
     TopBarComponent,
     BannerComponent,
-    DetectDisorderComponent
+    BmiCalculatorComponent,
+    PlanScheduleComponent,
+    WorkoutScheduleComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

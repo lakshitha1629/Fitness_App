@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-detect-disorder',
-  templateUrl: './detect-disorder.component.html',
-  styleUrls: ['./detect-disorder.component.scss']
+  selector: 'app-bmi-calculator',
+  templateUrl: './bmi-calculator.component.html',
+  styleUrls: ['./bmi-calculator.component.scss']
 })
-export class DetectDisorderComponent implements OnInit {
+export class BmiCalculatorComponent implements OnInit {
   openCVLoadResult: Observable<OpenCVLoadResult>;
   uploaderItemsLength: number;
   selectedFiles: FileList;
