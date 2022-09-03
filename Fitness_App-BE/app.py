@@ -137,7 +137,6 @@ class UserLogin(Resource):
         finally:
             conn.close()
 
-
 class UserPaymentStatus(Resource):
     def get(self, user_id):
         conn = mysql.connect()
@@ -151,6 +150,7 @@ class UserPaymentStatus(Resource):
 
     def post(self):
         return {"error":"Invalid Method."}
+
 class UserAddPayment(Resource):
     def get(self):
         return {"error":"Invalid Method."}
@@ -184,12 +184,85 @@ class UserAddPayment(Resource):
         finally:
             conn.close()
 
+class MealPlan(Resource):
+    def get(self):
+        try:            
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute("""select * from MealPlan""")
+            data = cursor.fetchall()
+            data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+            response = jsonify(data)
+            response.status_code = 200
+            return response
+
+        except Exception as error:
+            return {'error': error}
+
+        finally:
+            conn.close()
+
+    def post(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            _MemberId = request.form['MemberId']
+            _StartDate = request.form['StartDate']
+            _EndDate = request.form['EndDate']
+            _SelectDays = request.form['SelectDays']
+            _Breakfast = request.form['Breakfast']
+            _MidMorningSnack = request.form['MidMorningSnack']
+            _Lunch = request.form['Lunch']
+            _AfternoonSnack = request.form['AfternoonSnack']
+            _Dinner = request.form['Dinner']
+            _Status = request.form['Status']
+            _ApprovedBy = request.form['ApprovedBy']
+
+            cursor.execute("SELECT * FROM MealPlan WHERE UserId=%s", (_MemberId))
+            data = cursor.fetchall()
+            if len(data) > 0:
+                response = jsonify(message='User already have meal plan!', success=0)
+                response.status_code = 409
+                return response
+            else:
+                insert_mealPlan_cmd = """INSERT INTO MealPlan(UserId, StartDate, EndDate, SelectDays, Breakfast, MidMorningSnack, Lunch, AfternoonSnack, Dinner, Status, ApprovedBy) 
+                                    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+                cursor.execute(insert_mealPlan_cmd,  (_MemberId, _StartDate, _EndDate, _SelectDays, _Breakfast, _MidMorningSnack, _Lunch, _AfternoonSnack, _Dinner, _Status, _ApprovedBy))
+                conn.commit()
+                response = jsonify(message='Meal plan added successfully.', id=cursor.lastrowid)
+                response.status_code = 200
+                return response
+
+        except Exception as error:
+            return {'error': error}
+
+        finally:
+            conn.close()
+
+class GetMealPlanByUserId(Resource):
+    def get(self, user_id):
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute('select * from MealPlan where UserId = %s',user_id)
+        data = cursor.fetchall()
+        data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+        response = jsonify(data)
+        response.status_code = 200
+        return response
+
+    def post(self):
+        return {"error":"Invalid Method."}
+
 api.add_resource(Test,'/')
 api.add_resource(GetPredictionOutput,'/getPredictionOutput')
 api.add_resource(User,'/user')
 api.add_resource(UserLogin,'/userLogin')
 api.add_resource(UserPaymentStatus,'/userPaymentStatus/<int:user_id>')
 api.add_resource(UserAddPayment,'/userAddPayment')
+api.add_resource(MealPlan,'/mealPlan')
+api.add_resource(GetMealPlanByUserId,'/mealPlan/<int:user_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
