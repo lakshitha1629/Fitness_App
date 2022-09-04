@@ -13,5 +13,13 @@ export class ProjectDataService {
     return this.http.post<any>(`${environment.apiUrl}getPredictionOutput`, data);
   }
 
+  addUser(data: any){
+    return this.http.post<any>(`${environment.apiUrl}user`, data);
+  }
+
+  login(data: any){
+    return this.http.post<any>(`${environment.apiUrl}userLogin`, data);
+  }
+
 }
 

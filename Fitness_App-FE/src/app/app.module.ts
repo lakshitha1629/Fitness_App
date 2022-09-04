@@ -24,6 +24,7 @@ import { PlanScheduleComponent } from './features/plan-schedule/plan-schedule.co
 import { WorkoutScheduleComponent } from './features/workout-schedule/workout-schedule.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegistrationComponent } from './features/registration/registration.component';
+import { AddMealPlanComponent } from './features/add-meal-plan/add-meal-plan.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RegistrationComponent } from './features/registration/registration.comp
     PlanScheduleComponent,
     WorkoutScheduleComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddMealPlanComponent
   ],
   imports: [
     BrowserModule,

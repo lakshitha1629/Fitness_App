@@ -8,24 +8,93 @@
         <div class="card-text">
           <!--
           <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-          <form>
+          <form [formGroup]="userForm">
+            <h3 class="card-title text-center">Personal Details</h3>
             <div class="form-group">
               <label for="exampleInputEmail1">First Name</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" formControlName="firstName" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Middle Name</label>
+              <input type="email" formControlName="middleName" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Last Name</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" formControlName="lastName" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Gender</label>
+              <input type="email" formControlName="gender" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Date of Birth</label>
+              <input type="date" formControlName="dob" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Home Address</label>
+              <input type="email" formControlName="HomeAddress" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Mobile Number</label>
+              <input type="email" formControlName="MobileNumber" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+
+
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" formControlName="Email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
+
+
+
+            <div class="form-group">
+              <label for="exampleInputUsername">Username</label>
+              <input type="email" formControlName="Username" class="form-control form-control-sm" id="exampleInputUsername" aria-describedby="emailHelp">
+            </div>
+
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
+              <input type="password" formControlName="Password" class="form-control form-control-sm" id="exampleInputPassword1">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Repeat Password</label>
+              <input type="password" formControlName="Password" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+
+
+            <h3 class="card-title text-center">Medical Information </h3>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">CurrentWeight</label>
+              <input type="text" formControlName="CurrentWeight" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">CurrentHeight</label>
+              <input type="text" formControlName="CurrentHeight" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">BloodType</label>
+              <input type="text" formControlName="BloodType" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Allergies</label>
+                <input type="radio" id="yes" name="Allergies" value="HTML" (click)="changeAllergiesState(true)">
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" name="Allergies" value="CSS" (click)="changeAllergiesState(false)">
+                <label for="no">No</label><br>
+              <input type="text" formControlName="Allergies" *ngIf="haveAllergies" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">UserRole</label>
+              <input type="text" formControlName="UserRole" class="form-control form-control-sm" id="exampleInputPassword1">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary btn-block" (click)="addUser()">Sign up</button>
 
             <div class="sign-up">
               Already have an account? <a href="/login">Login</a>

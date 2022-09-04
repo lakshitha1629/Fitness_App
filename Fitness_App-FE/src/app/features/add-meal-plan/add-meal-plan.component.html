@@ -1,0 +1,100 @@
+<section class="section" id="process">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 text-center">
+                <div class="section-heading">
+                    <!-- Heading -->
+                    <h2 class="section-title">Add Meal Plan</h2>
+                </div>
+
+                <div class="col-sm">
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            Select Member
+                        </div>
+                        <div class="col-8">
+                            <select name="cars" id="cars">
+                                <option value="volvo">Kamal</option>
+                                <option value="saab">Sumal</option>
+                                <option value="opel">Kapu</option>
+                                <option value="audi">Nimal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            Start Date
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <input type="date" formControlName="startDate" class="form-control form-control-sm"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            End Date
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <input type="date" formControlName="endDate" class="form-control form-control-sm"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            Select Days
+
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                Select Nutration To Add On Selected Days
+
+                                <div class="form-group">
+                                    <label>Break Fast</label>
+                                      <input type="checkbox" (click)="haveBreakfast==true?haveBreakfast=false:haveBreakfast=true"  value="{{haveBreakfast}}">
+                                    <input type="text" formControlName="Breakfast" *ngIf="haveBreakfast" class="form-control form-control-sm" >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Mid Morning Snacks</label>
+                                      <input type="checkbox"  (click)="haveMidMorningSnacks=!haveMidMorningSnacks">
+                                    <input type="text" formControlName="MidMorningSnacks" *ngIf="haveMidMorningSnacks" class="form-control form-control-sm" >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Lunch</label>
+                                      <input type="checkbox"  (click)="haveLunch=!haveLunch">
+                                    <input type="text" formControlName="Lunch" *ngIf="haveLunch" class="form-control form-control-sm" >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Afternoon Snackst</label>
+                                      <input type="checkbox"   (click)="haveAfternoonSnacks=!haveAfternoonSnacks">
+                                    <input type="text" formControlName="AfternoonSnacks" *ngIf="haveAfternoonSnacks" class="form-control form-control-sm" >
+                                  </div>
+
+
+                                  <div class="form-group">
+                                    <label>Dinner</label>
+                                      <input type="checkbox" (click)="haveDinner=!haveDinner">
+                                    <input type="text" formControlName="Dinner" *ngIf="haveDinner" class="form-control form-control-sm" id="exampleInputPassword1">
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

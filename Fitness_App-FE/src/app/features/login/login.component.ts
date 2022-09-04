@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm : FormGroup = new FormGroup({
+    Password: new FormControl(),
+    Email: new FormControl(),
+  });
+
+  constructor(private projectDataService:ProjectDataService) { }
 
   ngOnInit(): void {
+  }
+
+  login(){
+
+    const formData = new FormData();
+
+    formData.append('Password', this.loginForm.controls.Password.value);
+    formData.append('Email', this.loginForm.controls.Email.value);
+
+
+    this.projectDataService.login(formData).subscribe(res=>{
+console.log(res);
+    });
+
   }
 
 }

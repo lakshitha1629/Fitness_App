@@ -7,6 +7,7 @@ import { PlanScheduleComponent } from './features/plan-schedule/plan-schedule.co
 import { WorkoutScheduleComponent } from './features/workout-schedule/workout-schedule.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegistrationComponent } from './features/registration/registration.component';
+import { AddMealPlanComponent } from './features/add-meal-plan/add-meal-plan.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'add-meal-plan',
+    component: AddMealPlanComponent,
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
