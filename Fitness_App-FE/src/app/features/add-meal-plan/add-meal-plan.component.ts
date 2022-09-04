@@ -12,7 +12,17 @@ export class AddMealPlanComponent implements OnInit {
   haveLunch=false;
   haveAfternoonSnacks=false;
   haveDinner=false;
-  
+
+  days={
+    sunday:false,
+    monday:false,
+    tuesday:false,
+    wednesday:false,
+    thursday:false,
+    friday:false,
+    saturday:false,
+  }
+
 
   constructor() { }
 
