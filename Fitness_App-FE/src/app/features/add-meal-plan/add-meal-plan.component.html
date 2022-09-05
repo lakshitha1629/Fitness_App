@@ -9,17 +9,16 @@
 
                 <div class="col-sm">
 
-
+                  <form [formGroup]="mealForm">
                     <div class="row">
                         <div class="col-4">
                             Select Member
                         </div>
                         <div class="col-8">
-                            <select name="cars" id="cars">
-                                <option value="volvo">Kamal</option>
-                                <option value="saab">Sumal</option>
-                                <option value="opel">Kapu</option>
-                                <option value="audi">Nimal</option>
+                            <select formControlName="MemberId">
+
+                                <option *ngFor="let user of users;" value="{{user['UserId']}}">{{user["FirstName"]+' '+user["LastName"]}}</option>
+                               
                             </select>
                         </div>
                     </div>
@@ -30,7 +29,7 @@
                         <div class="col-8">
                             <div class="form-group">
 
-                                <input type="date" formControlName="startDate" class="form-control form-control-sm"
+                                <input type="date" formControlName="StartDate" class="form-control form-control-sm"
                                     id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
@@ -42,7 +41,7 @@
                         <div class="col-8">
                             <div class="form-group">
 
-                                <input type="date" formControlName="endDate" class="form-control form-control-sm"
+                                <input type="date" formControlName="EndDate" class="form-control form-control-sm"
                                     id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
@@ -53,37 +52,37 @@
                         <h2>Select Days</h2>
                         <div class="form-group">
                           <label>sunday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.sunday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Monday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.monday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Tuesday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.tuesday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Wednesday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.wednesday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Thursday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.thursday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Friday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.friday" [ngModelOptions]="{standalone: true}">
 
                         </div>
                         <div class="form-group">
                           <label>Saturday</label>
-                            <input type="checkbox" [] value="1">
+                            <input type="checkbox" [(ngModel)]="days.saturday" [ngModelOptions]="{standalone: true}">
 
                         </div>
 
@@ -95,39 +94,41 @@
 
                                 <div class="form-group">
                                     <label>Break Fast</label>
-                                      <input type="checkbox" (click)="haveBreakfast==true?haveBreakfast=false:haveBreakfast=true"  value="{{haveBreakfast}}">
+                                      <input type="checkbox" [(ngModel)]="haveBreakfast" [ngModelOptions]="{standalone: true}">
                                     <input type="text" formControlName="Breakfast" *ngIf="haveBreakfast" class="form-control form-control-sm" >
                                   </div>
 
                                   <div class="form-group">
                                     <label>Mid Morning Snacks</label>
-                                      <input type="checkbox"  (click)="haveMidMorningSnacks=!haveMidMorningSnacks">
+                                      <input type="checkbox" [(ngModel)]="haveMidMorningSnacks" [ngModelOptions]="{standalone: true}">
                                     <input type="text" formControlName="MidMorningSnacks" *ngIf="haveMidMorningSnacks" class="form-control form-control-sm" >
                                   </div>
 
                                   <div class="form-group">
                                     <label>Lunch</label>
-                                      <input type="checkbox"  (click)="haveLunch=!haveLunch">
+                                      <input type="checkbox" [(ngModel)]="haveLunch" [ngModelOptions]="{standalone: true}">
                                     <input type="text" formControlName="Lunch" *ngIf="haveLunch" class="form-control form-control-sm" >
                                   </div>
 
                                   <div class="form-group">
                                     <label>Afternoon Snackst</label>
-                                      <input type="checkbox"   (click)="haveAfternoonSnacks=!haveAfternoonSnacks">
+                                      <input type="checkbox" [(ngModel)]="haveAfternoonSnacks" [ngModelOptions]="{standalone: true}">
                                     <input type="text" formControlName="AfternoonSnacks" *ngIf="haveAfternoonSnacks" class="form-control form-control-sm" >
                                   </div>
 
 
                                   <div class="form-group">
                                     <label>Dinner</label>
-                                      <input type="checkbox" (click)="haveDinner=!haveDinner">
+                                      <input type="checkbox" [(ngModel)]="haveDinner" [ngModelOptions]="{standalone: true}">
                                     <input type="text" formControlName="Dinner" *ngIf="haveDinner" class="form-control form-control-sm" id="exampleInputPassword1">
                                   </div>
                             </div>
                         </div>
                     </div>
 
+                  </form>
 
+                  <Button (click)="addMealPlan()">Add Meal Plan</Button>
                 </div>
             </div>
         </div>

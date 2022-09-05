@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
   selector: 'app-add-meal-plan',
@@ -13,6 +15,8 @@ export class AddMealPlanComponent implements OnInit {
   haveAfternoonSnacks=false;
   haveDinner=false;
 
+  users:any;
+
   days={
     sunday:false,
     monday:false,
@@ -23,10 +27,86 @@ export class AddMealPlanComponent implements OnInit {
     saturday:false,
   }
 
+  mealForm: FormGroup = new FormGroup({
+    MemberId: new FormControl(),
+    StartDate: new FormControl(),
+    EndDate: new FormControl(),
+    SelectDays: new FormControl(),
+  
+    Breakfast: new FormControl(),
+    MidMorningSnacks: new FormControl(),
+    Lunch: new FormControl(),
+    AfternoonSnacks: new FormControl(),
+    Dinner: new FormControl(),
+    Status: new FormControl(),
+    ApprovedBy: new FormControl(),
 
-  constructor() { }
+  });
+
+
+  constructor(private projectDataService:ProjectDataService) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(){
+    this.projectDataService.getUsers().subscribe(res=>{
+      this.users=res;
+      console.log(res);
+    });
+  }
+
+
+  addMealPlan(){
+    const formData = new FormData();
+
+    formData.append('MemberId', this.mealForm.controls.MemberId.value);
+    formData.append('StartDate', this.mealForm.controls.StartDate.value);
+    formData.append('EndDate', this.mealForm.controls.EndDate.value);
+    formData.append('SelectDays', this.getSelectedDates());
+    formData.append('Breakfast', this.haveBreakfast?this.mealForm.controls.Breakfast.value:'no');
+    formData.append('MidMorningSnack', this.haveMidMorningSnacks?this.mealForm.controls.MidMorningSnacks.value:'no');
+    formData.append('Lunch', this.haveLunch?this.mealForm.controls.Lunch.value:'no');
+    formData.append('AfternoonSnack', this.haveAfternoonSnacks?this.mealForm.controls.AfternoonSnacks.value:'no');
+    formData.append('Dinner', this.haveDinner?this.mealForm.controls.Dinner.value:'no');
+    formData.append('Status', "1");
+    formData.append('ApprovedBy', "3");
+
+
+
+
+    this.projectDataService.addMealPlan(formData).subscribe(res=>{
+      console.log(res);
+    });
+  }
+
+  getSelectedDates(){
+    let selectedDays = "";
+    if(this.days.sunday){
+      selectedDays=selectedDays+"sunday ";
+    }
+    if(this.days.monday){
+      selectedDays=selectedDays+"monday ";
+    }
+    if(this.days.tuesday){
+      selectedDays=selectedDays+"tuesday ";
+    }
+    if(this.days.wednesday){
+      selectedDays=selectedDays+"wednesday ";
+    }
+    if(this.days.thursday){
+      selectedDays=selectedDays+"thursday ";
+    }
+    if(this.days.friday){
+      selectedDays=selectedDays+"friday ";
+    }
+    if(this.days.saturday){
+      selectedDays=selectedDays+"saturday ";
+    }
+
+    return selectedDays;
+
   }
 
 }

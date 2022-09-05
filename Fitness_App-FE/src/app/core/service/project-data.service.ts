@@ -21,5 +21,15 @@ export class ProjectDataService {
     return this.http.post<any>(`${environment.apiUrl}userLogin`, data);
   }
 
+  addMealPlan(data: any){
+    return this.http.post<any>(`${environment.apiUrl}mealPlan`, data);
+  }
+
+  getUsers(){
+    return this.http.get<any>(`${environment.apiUrl}user`);
+  }
+
+
+
 }
 

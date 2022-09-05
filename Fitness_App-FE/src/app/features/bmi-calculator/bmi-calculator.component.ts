@@ -2,7 +2,7 @@ import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
-import { NgOpenCVService, OpenCVLoadResult } from 'ng-open-cv';
+// import { NgOpenCVService, OpenCVLoadResult } from 'ng-open-cv';
 import { fromEvent, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./bmi-calculator.component.scss']
 })
 export class BmiCalculatorComponent implements OnInit {
-  openCVLoadResult: Observable<OpenCVLoadResult>;
+  // openCVLoadResult: Observable<OpenCVLoadResult>;
   uploaderItemsLength: number;
   selectedFiles: FileList;
   progressInfos = [];
