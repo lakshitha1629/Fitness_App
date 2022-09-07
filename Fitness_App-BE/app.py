@@ -314,6 +314,30 @@ class SchedulePlanByUserId(Resource):
     def post(self):
         return {"error":"Invalid Method."}
 
+class ApproveSchedulePlan(Resource):
+    def get(self):
+        return {"error":"Invalid Method."}
+
+    def post(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            _CustomizedScheduleId = request.form['CustomizedScheduleId']
+
+            update_approveSchedulePlan_cmd = """UPDATE customizedSchedule SET Status = 1 WHERE CustomizedScheduleId = %s"""
+            cursor.execute(update_approveSchedulePlan_cmd,  (_CustomizedScheduleId))
+            conn.commit()
+            response = jsonify(message='Schedule plan Approved successfully.', id=cursor.lastrowid)
+            response.status_code = 200
+            return response
+
+        except Exception as error:
+            return {'error': error}
+
+        finally:
+            conn.close()
+
 api.add_resource(Test,'/')
 api.add_resource(GetPredictionOutput,'/getPredictionOutput')
 api.add_resource(User,'/user')
@@ -324,6 +348,7 @@ api.add_resource(MealPlan,'/mealPlan')
 api.add_resource(GetMealPlanByUserId,'/mealPlan/<int:user_id>')
 api.add_resource(SchedulePlan,'/schedule')
 api.add_resource(SchedulePlanByUserId,'/customizedSchedule/<int:user_id>')
+api.add_resource(ApproveSchedulePlan,'/approveCustomizedSchedule')
 
 if __name__ == '__main__':
     app.run(debug=True)
