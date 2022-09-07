@@ -318,63 +318,6 @@
 					"response": []
 				},
 				{
-					"name": "AddCusSchedulePlan",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "MemberId",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "ScheduleTypeName",
-									"value": "Sunday",
-									"type": "text"
-								},
-								{
-									"key": "Exercise",
-									"value": "Incline Press",
-									"type": "text"
-								},
-								{
-									"key": "Sets",
-									"value": "10-10-10",
-									"type": "text"
-								},
-								{
-									"key": "Kg",
-									"value": "25",
-									"type": "text"
-								},
-								{
-									"key": "RestTime",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:5000/schedule",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"schedule"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GetMealPlan",
 					"request": {
 						"method": "GET",
@@ -397,28 +340,6 @@
 					"response": []
 				},
 				{
-					"name": "GetSchedulePlan",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/schedule",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"schedule"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GetMealPlanByUserId",
 					"request": {
 						"method": "GET",
@@ -435,29 +356,6 @@
 							"port": "5000",
 							"path": [
 								"mealPlan",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "SchedulePlanByUserId",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/customizedSchedule/5",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"customizedSchedule",
 								"5"
 							]
 						}

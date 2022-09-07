@@ -255,6 +255,65 @@ class GetMealPlanByUserId(Resource):
     def post(self):
         return {"error":"Invalid Method."}
 
+class SchedulePlan(Resource):
+    def get(self):
+        try:            
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute("""SELECT * from Schedule""")
+            data = cursor.fetchall()
+            data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+            response = jsonify(data)
+            response.status_code = 200
+            return response
+
+        except Exception as error:
+            return {'error': error}
+
+        finally:
+            conn.close()
+
+    def post(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+
+            _MemberId = request.form['MemberId']
+            _ScheduleTypeName = request.form['ScheduleTypeName']
+            _Exercise = request.form['Exercise']
+            _Sets = request.form['Sets']
+            _Kg = request.form['Kg']
+            _RestTime = request.form['RestTime']
+
+            insert_mealPlan_cmd = """INSERT INTO customizedSchedule(UserId, ScheduleTypeName, Exercise, Sets, Kg, RestTime) 
+                                    VALUES(%s, %s, %s, %s, %s, %s)"""
+
+            cursor.execute(insert_mealPlan_cmd,  (_MemberId, _ScheduleTypeName, _Exercise, _Sets, _Kg, _RestTime))
+            conn.commit()
+            response = jsonify(message='Schedule plan added successfully.', id=cursor.lastrowid)
+            response.status_code = 200
+            return response
+
+        except Exception as error:
+            return {'error': error}
+
+        finally:
+            conn.close()
+
+class SchedulePlanByUserId(Resource):
+    def get(self, user_id):
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute('select * from customizedSchedule where UserId = %s',user_id)
+        data = cursor.fetchall()
+        data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+        response = jsonify(data)
+        response.status_code = 200
+        return response
+
+    def post(self):
+        return {"error":"Invalid Method."}
+
 api.add_resource(Test,'/')
 api.add_resource(GetPredictionOutput,'/getPredictionOutput')
 api.add_resource(User,'/user')
@@ -263,6 +322,8 @@ api.add_resource(UserPaymentStatus,'/userPaymentStatus/<int:user_id>')
 api.add_resource(UserAddPayment,'/userAddPayment')
 api.add_resource(MealPlan,'/mealPlan')
 api.add_resource(GetMealPlanByUserId,'/mealPlan/<int:user_id>')
+api.add_resource(SchedulePlan,'/schedule')
+api.add_resource(SchedulePlanByUserId,'/customizedSchedule/<int:user_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
