@@ -60,7 +60,7 @@ userForm : FormGroup = new FormGroup({
     formData.append('BloodType', this.userForm.controls.BloodType.value);
     formData.append('Allergies', this.haveAllergies?this.userForm.controls.Allergies.value:"No");
     formData.append('Email', this.userForm.controls.Email.value);
-
+    formData.append('UserRole', this.userForm.controls.UserRole.value);
 
     this.projectDataService.addUser(formData).subscribe(res=>{
 console.log(res);

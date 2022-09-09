@@ -1,0 +1,195 @@
+<section class="section" id="process">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 text-center">
+                <div class="section-heading">
+                    <!-- Heading -->
+                    <h2 class="section-title">Add Custom Workout Schedule</h2>
+                </div>
+
+                <div class="col-sm">
+
+                  <form [formGroup]="workoutForm">
+                    <div class="row">
+                        <div class="col-4">
+                            Select Member
+                        </div>
+                        <div class="col-8">
+                            <select formControlName="MemberId">
+
+                                <option *ngFor="let user of users;" value="{{user['UserId']}}">{{user["FirstName"]+' '+user["LastName"]}}</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-4">
+                            Start Date
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <input type="date" formControlName="StartDate" class="form-control form-control-sm"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            End Date
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+
+                                <input type="date" formControlName="EndDate" class="form-control form-control-sm"
+                                    id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-4">
+                        <h2>Select Days</h2>
+                        <div class="form-group">
+                          <label>sunday</label>
+                            <input type="checkbox" [(ngModel)]="days.sunday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Monday</label>
+                            <input type="checkbox" [(ngModel)]="days.monday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Tuesday</label>
+                            <input type="checkbox" [(ngModel)]="days.tuesday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Wednesday</label>
+                            <input type="checkbox" [(ngModel)]="days.wednesday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Thursday</label>
+                            <input type="checkbox" [(ngModel)]="days.thursday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Friday</label>
+                            <input type="checkbox" [(ngModel)]="days.friday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+                        <div class="form-group">
+                          <label>Saturday</label>
+                            <input type="checkbox" [(ngModel)]="days.saturday" [ngModelOptions]="{standalone: true}">
+
+                        </div>
+
+                        </div>
+                        <div class="col-8">
+                            <div class="form-group">
+                              <h2>Select Workout Activity To Add On Selected Days</h2>
+
+
+                                <div class="form-group">
+                                    <label>Body Conditioning</label>
+                                      <input type="checkbox" [(ngModel)]="haveBC" [ngModelOptions]="{standalone: true}">
+                                    <div class="row" *ngIf="haveBC">
+                                        <div class="col-6">
+                                         Sets   <input type="text" formControlName="BCsets" class="form-control form-control-sm" >
+                                         KG   <input type="text" formControlName="BCkg" class="form-control form-control-sm" >
+                                 
+                                        </div>
+                                        <div class="col-6">
+                                          Reps  <input type="text" formControlName="BCreps" class="form-control form-control-sm" >
+                                          Rest Time  <input type="text" formControlName="BCrest" class="form-control form-control-sm" >
+                                        </div>
+                                    </div>
+                                      
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Free Weights</label>
+                                      <input type="checkbox" [(ngModel)]="haveFW" [ngModelOptions]="{standalone: true}">
+                                    <div class="row" *ngIf="haveFW">
+                                        <div class="col-6">
+                                         Sets   <input type="text" formControlName="FWsets" class="form-control form-control-sm" >
+                                         KG   <input type="text" formControlName="FWkg" class="form-control form-control-sm" >
+                                 
+                                        </div>
+                                        <div class="col-6">
+                                          Reps  <input type="text" formControlName="FWreps" class="form-control form-control-sm" >
+                                          Rest Time  <input type="text" formControlName="FWrest" class="form-control form-control-sm" >
+                                        </div>
+                                    </div>
+                                      
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Plank</label>
+                                      <input type="checkbox" [(ngModel)]="haveP" [ngModelOptions]="{standalone: true}">
+                                    <div class="row" *ngIf="haveP">
+                                        <div class="col-6">
+                                         Sets   <input type="text" formControlName="Psets" class="form-control form-control-sm" >
+                                         KG   <input type="text" formControlName="Pkg" class="form-control form-control-sm" >
+                                 
+                                        </div>
+                                        <div class="col-6">
+                                          Reps  <input type="text" formControlName="Preps" class="form-control form-control-sm" >
+                                          Rest Time  <input type="text" formControlName="Prest" class="form-control form-control-sm" >
+                                        </div>
+                                    </div>
+                                      
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Crunch</label>
+                                      <input type="checkbox" [(ngModel)]="haveC" [ngModelOptions]="{standalone: true}">
+                                    <div class="row" *ngIf="haveC">
+                                        <div class="col-6">
+                                         Sets   <input type="text" formControlName="Csets" class="form-control form-control-sm" >
+                                         KG   <input type="text" formControlName="Ckg" class="form-control form-control-sm" >
+                                 
+                                        </div>
+                                        <div class="col-6">
+                                          Reps  <input type="text" formControlName="Creps" class="form-control form-control-sm" >
+                                          Rest Time  <input type="text" formControlName="Crest" class="form-control form-control-sm" >
+                                        </div>
+                                    </div>
+                                      
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Fixed Weights</label>
+                                      <input type="checkbox" [(ngModel)]="haveFD" [ngModelOptions]="{standalone: true}">
+                                    <div class="row" *ngIf="haveFD">
+                                        <div class="col-6">
+                                         Sets   <input type="text" formControlName="FDsets" class="form-control form-control-sm" >
+                                         KG   <input type="text" formControlName="FDkg" class="form-control form-control-sm" >
+                                 
+                                        </div>
+                                        <div class="col-6">
+                                          Reps  <input type="text" formControlName="FDreps" class="form-control form-control-sm" >
+                                          Rest Time  <input type="text" formControlName="FDrest" class="form-control form-control-sm" >
+                                        </div>
+                                    </div>
+                                      
+                                  </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                  </form>
+
+                  <Button (click)="AddExPlan()">Add Workout Schedule</Button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

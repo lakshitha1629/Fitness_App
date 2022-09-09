@@ -29,6 +29,10 @@ export class ProjectDataService {
     return this.http.get<any>(`${environment.apiUrl}user`);
   }
 
+  addWorkoutPlan(data: any){
+    return this.http.post<any>(`${environment.apiUrl}schedule`, data);
+  }
+
 
 
 }
