@@ -284,11 +284,12 @@ class SchedulePlan(Resource):
             _Sets = request.form['Sets']
             _Kg = request.form['Kg']
             _RestTime = request.form['RestTime']
+            _Reps = request.form['Reps']
 
-            insert_mealPlan_cmd = """INSERT INTO customizedSchedule(UserId, ScheduleTypeName, Exercise, Sets, Kg, RestTime) 
-                                    VALUES(%s, %s, %s, %s, %s, %s)"""
+            insert_mealPlan_cmd = """INSERT INTO customizedSchedule(UserId, ScheduleTypeName, Exercise, Sets, Kg, RestTime, Reps) 
+                                    VALUES(%s, %s, %s, %s, %s, %s, %s)"""
 
-            cursor.execute(insert_mealPlan_cmd,  (_MemberId, _ScheduleTypeName, _Exercise, _Sets, _Kg, _RestTime))
+            cursor.execute(insert_mealPlan_cmd,  (_MemberId, _ScheduleTypeName, _Exercise, _Sets, _Kg, _RestTime, _Reps))
             conn.commit()
             response = jsonify(message='Schedule plan added successfully.', id=cursor.lastrowid)
             response.status_code = 200
