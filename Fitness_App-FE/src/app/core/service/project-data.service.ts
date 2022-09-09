@@ -33,6 +33,33 @@ export class ProjectDataService {
     return this.http.post<any>(`${environment.apiUrl}schedule`, data);
   }
 
+  getMealPlanByUserId(id){
+    return this.http.get<any>(`${environment.apiUrl}mealPlan/${id}`);
+  }
+
+  getSchedulePlanByUserId(id){
+    return this.http.get<any>(`${environment.apiUrl}customizedSchedule/${id}`);
+  }
+
+  getMealPlan(){
+    return this.http.get<any>(`${environment.apiUrl}mealPlan`);
+  }
+
+  getSchedulePlan(){
+    return this.http.get<any>(`${environment.apiUrl}schedule`);
+  }
+
+  approveSchedulePlan(data: any){
+    return this.http.post<any>(`${environment.apiUrl}approveCustomizedSchedule`, data);
+  }
+
+  addUserPayment(data: any){
+    return this.http.post<any>(`${environment.apiUrl}userAddPayment`, data);
+  }
+
+  getUserPaymentStatus(id){
+    return this.http.get<any>(`${environment.apiUrl}userPaymentStatus/${id}`);
+  }
 
 
 }

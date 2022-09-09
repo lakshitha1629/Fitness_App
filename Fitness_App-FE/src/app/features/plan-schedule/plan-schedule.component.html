@@ -10,75 +10,74 @@
 
       </div>
     </div>
-    <h2>Day 1</h2>
-    <i>Daily Totals: 1,940 calories, 117 grams protein, 258 grams carbohydrates, 55 grams fat</i>
+    <h2>{{mealplan?.SelectDays}}</h2>
+    <i>Start Date: {{mealplan?.StartDate | date}} - End Date: {{mealplan?.EndDate | date}}</i>
     <hr>
     <div class="row">
-      <div class="col-sm">
+      <div class="col-sm" *ngIf="mealplan?.Breakfast">
         <div class="card card-ui">
           <div class="card-body">
             <h5 class="card-title">Breakfast</h5>
-            <p class="card-text">Macronutrients: approximately 327 calories, 18 grams protein, 41 grams carbohydrates,
-              and 11 grams fat</p>
+            <p class="card-text">{{mealplan?.Breakfast}}</p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">One grapefruit</li>
             <li class="list-group-item">Two poached eggs (or fried in a non-stick pan)</li>
             <li class="list-group-item">One slice 100% whole wheat toast</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
-      <div class="col-sm">
+      <div class="col-sm" *ngIf="mealplan?.MidMorningSnack">
         <div class="card card-ui">
           <div class="card-body">
-            <h5 class="card-title">Snack</h5>
-            <p class="card-text">Macronutrients: 324 calories, 14 grams protein, 62 grams carbohydrates, 4 grams fat</p>
+            <h5 class="card-title">Mid Morning Snack</h5>
+            <p class="card-text">{{mealplan?.MidMorningSnack}}</p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">One banana</li>
             <li class="list-group-item">One cup plain yogurt with one tablespoon honey</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
-      <div class="col-sm">
+      <div class="col-sm" *ngIf="mealplan?.Lunch">
         <div class="card card-ui">
           <div class="card-body">
             <h5 class="card-title">Lunch</h5>
-            <p class="card-text">Macronutrients: 396 calories, 41 grams protein, 18 grams carbohydrates, 18 grams fat</p>
+            <p class="card-text">{{mealplan?.Lunch}}</p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">Six ounces grilled chicken breast</li>
             <li class="list-group-item">Large garden salad (three cups mixed greens with one cup cherry tomatoes, one-quarter avocado, topped with two tablespoons balsamic vinaigrette)</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
-      <div class="col-sm">
+      <div class="col-sm" *ngIf="mealplan?.AfternoonSnack">
         <div class="card card-ui">
           <div class="card-body">
-            <h5 class="card-title">Snack</h5>
-            <p class="card-text">Macronutrients: 192 calories, 7 grams protein, 31 grams carbohydrates, 5 grams fatt</p>
+            <h5 class="card-title">Afternoon Snack</h5>
+            <p class="card-text">{{mealplan?.AfternoonSnack}}</p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">One cup (about 10) baby carrots</li>
             <li class="list-group-item">Three tablespoons hummus</li>
             <li class="list-group-item">One-half piece of pita bread</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <div class="col-sm">
         <div class="card card-ui">
           <div class="card-body">
             <h5 class="card-title">Dinner</h5>
-            <p class="card-text">Macronutrients: 399 calories, 34 grams protein, 57 grams carbohydrates, 4 grams fat</p>
+            <p class="card-text">{{mealplan?.Dinner}}</p>
           </div>
-          <ul class="list-group list-group-flush">
+          <!-- <ul class="list-group list-group-flush">
             <li class="list-group-item">One cup steamed broccoli</li>
             <li class="list-group-item">One cup of brown rice</li>
             <li class="list-group-item">Halibut (four-ounce portion)</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
-      <div class="col-sm">
+      <!-- <div class="col-sm">
         <div class="card card-ui">
           <div class="card-body">
             <h5 class="card-title">Snack</h5>
@@ -89,87 +88,8 @@
             <li class="list-group-item">One ounce 70% dark chocolate</li>
           </ul>
         </div>
-      </div>
+      </div> -->
     </div>
-<br>
-    <h2>Day 2</h2>
-    <i>Daily Totals: 2,045 calories, 145 grams protein, 188 grams carbohydrates, 85 grams fat</i>
-    <hr>
-    <div class="row">
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Breakfast</h5>
-            <p class="card-text">Macronutrients: 391 calories with 14 grams protein, 52 grams carbohydrates, and 17 grams fat</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">One whole-wheat English muffin with two tablespoons peanut butter</li>
-            <li class="list-group-item">One orange</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Snack</h5>
-            <p class="card-text">Macronutrients: 324 calories, 14 grams protein, 62 grams carbohydrates, 4 grams fat</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">One banana</li>
-            <li class="list-group-item">One cup plain yogurt with one tablespoon honey</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Lunch</h5>
-            <p class="card-text">Macronutrients: 396 calories, 41 grams protein, 18 grams carbohydrates, 18 grams fat</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Six ounces grilled chicken breast</li>
-            <li class="list-group-item">Large garden salad (three cups mixed greens with one cup cherry tomatoes, one-quarter avocado, topped with two tablespoons balsamic vinaigrette)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Snack</h5>
-            <p class="card-text">Macronutrients: 192 calories, 7 grams protein, 31 grams carbohydrates, 5 grams fatt</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">One cup (about 10) baby carrots</li>
-            <li class="list-group-item">Three tablespoons hummus</li>
-            <li class="list-group-item">One-half piece of pita bread</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Dinner</h5>
-            <p class="card-text">Macronutrients: 399 calories, 34 grams protein, 57 grams carbohydrates, 4 grams fat</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">One cup steamed broccoli</li>
-            <li class="list-group-item">One cup of brown rice</li>
-            <li class="list-group-item">Halibut (four-ounce portion)</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">Snack</h5>
-            <p class="card-text">Macronutrients: 302 calories, 3 grams protein, 49 grams carbohydrates, 12 grams fat</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Two pitted medjool dates</li>
-            <li class="list-group-item">One ounce 70% dark chocolate</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
   </div>
 </section>

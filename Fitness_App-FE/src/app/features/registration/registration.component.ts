@@ -46,11 +46,11 @@ userForm : FormGroup = new FormGroup({
   addUser(){
     const formData = new FormData();
 
-    formData.append('firstName', this.userForm.controls.firstName.value);
-    formData.append('middleName', this.userForm.controls.middleName.value);
-    formData.append('lastName', this.userForm.controls.lastName.value);
-    formData.append('gender', this.userForm.controls.gender.value);
-    formData.append('dob', this.userForm.controls.dob.value);
+    formData.append('FirstName', this.userForm.controls.firstName.value);
+    formData.append('MiddleName', this.userForm.controls.middleName.value);
+    formData.append('LastName', this.userForm.controls.lastName.value);
+    formData.append('Gender', this.userForm.controls.gender.value);
+    formData.append('DOB', this.userForm.controls.dob.value);
     formData.append('HomeAddress', this.userForm.controls.HomeAddress.value);
     formData.append('MobileNumber', this.userForm.controls.MobileNumber.value);
     formData.append('Username', this.userForm.controls.Username.value);
@@ -58,7 +58,7 @@ userForm : FormGroup = new FormGroup({
     formData.append('CurrentWeight', this.userForm.controls.CurrentWeight.value);
     formData.append('CurrentHeight', this.userForm.controls.CurrentHeight.value);
     formData.append('BloodType', this.userForm.controls.BloodType.value);
-    formData.append('Allergies', this.haveAllergies?this.userForm.controls.Allergies.value:"No");
+    formData.append('Allergies', this.haveAllergies?'1':"0");
     formData.append('Email', this.userForm.controls.Email.value);
     formData.append('UserRole', this.userForm.controls.UserRole.value);
 

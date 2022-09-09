@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     const formData = new FormData();
 
     formData.append('Password', this.loginForm.controls.Password.value);
-    formData.append('Email', this.loginForm.controls.Email.value);
+    formData.append('Username', this.loginForm.controls.Email.value);
 
 
     this.projectDataService.login(formData).subscribe(res=>{

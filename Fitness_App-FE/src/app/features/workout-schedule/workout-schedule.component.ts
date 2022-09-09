@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
   selector: 'app-workout-schedule',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutScheduleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private projectDataService:ProjectDataService) { }
 
   ngOnInit(): void {
+    this.getSchedulePlanByUserId();
+  }
+
+  
+  getSchedulePlanByUserId(){
+    this.projectDataService.getSchedulePlanByUserId(5).subscribe(res=>{
+      //this.users=res;
+      console.log(res);
+    });
   }
 
 }
