@@ -8,6 +8,8 @@ import { ProjectDataService } from 'src/app/core/service/project-data.service';
 })
 export class WorkoutScheduleComponent implements OnInit {
 
+  schedule:any;
+
   constructor(private projectDataService:ProjectDataService) { }
 
   ngOnInit(): void {
@@ -16,8 +18,9 @@ export class WorkoutScheduleComponent implements OnInit {
 
   
   getSchedulePlanByUserId(){
-    this.projectDataService.getSchedulePlanByUserId(5).subscribe(res=>{
+    this.projectDataService.getSchedulePlanByUserId(localStorage.getItem("userId")).subscribe(res=>{
       //this.users=res;
+      this.schedule=res;
       console.log(res);
     });
   }

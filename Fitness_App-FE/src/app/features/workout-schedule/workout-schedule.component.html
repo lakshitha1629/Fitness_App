@@ -7,10 +7,29 @@
           <h2 class="section-title">Online Workout Schedule</h2>
         </div>
 
-        <div class="col-sm">
-          <img src="../../../assets/images/plan.png" class="img-fluid" alt="Responsive image">
-        </div>
+
       </div>
     </div>
+    <!-- <h2>{{schedule?.SelectDays}}</h2>
+    <i>Start Date: {{schedule?.StartDate | date}} - End Date: {{schedule?.EndDate | date}}</i>
+    <hr> -->
+    <div class="row">
+      <div class="col-sm" *ngFor="let item of schedule; index as i;">
+        <div class="card card-ui">
+          <div class="card-body">
+            <h5 class="card-title">{{item?.Exercise}}</h5>
+            <p class="card-text">Day: {{item?.ScheduleTypeName}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Sets:{{item?.Sets}}</li>
+            <li class="list-group-item">KG:{{item?.Kg}}</li>
+            <li class="list-group-item">Reps:{{item?.Reps}}</li>
+            <li class="list-group-item">Rest Time:{{item?.RestTime}}mins</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>

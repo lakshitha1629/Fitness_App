@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,8 @@ import { LoginComponent } from './features/login/login.component';
 import { RegistrationComponent } from './features/registration/registration.component';
 import { AddMealPlanComponent } from './features/add-meal-plan/add-meal-plan.component';
 import { AddWorkoutScheduleComponent } from './features/add-workout-schedule/add-workout-schedule.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { ApproveWorkoutComponent } from './features/approve-workout/approve-workout.component'; //Works
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { AddWorkoutScheduleComponent } from './features/add-workout-schedule/add
     LoginComponent,
     RegistrationComponent,
     AddMealPlanComponent,
-    AddWorkoutScheduleComponent
+    AddWorkoutScheduleComponent,
+    ApproveWorkoutComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +58,11 @@ import { AddWorkoutScheduleComponent } from './features/add-workout-schedule/add
     NgBootstrapFormValidationModule.forRoot(),
     ImageUploaderModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
   exports: [BrowserModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: environment.apiUrl } }],
   bootstrap: [AppComponent]
 })

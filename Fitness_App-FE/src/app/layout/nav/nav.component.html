@@ -39,24 +39,29 @@
               BMI Calculator
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="userRole==1">
             <a routerLink="/plan-schedule" class="nav-link js-scroll-trigger">
               Meal Plan & Diet Schedule
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="userRole==1">
             <a routerLink="/workout-schedule" class="nav-link js-scroll-trigger">
               Online Workout Schedule
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="userRole==1 || userRole ==2">
             <a routerLink="/add-meal-plan" class="nav-link js-scroll-trigger">
               Add Meal Plan
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="userRole==1 || userRole ==2">
             <a routerLink="/add-workout-schedule" class="nav-link js-scroll-trigger">
               Add Custom Workout Schedule
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="userRole==3">
+            <a routerLink="/schedules" class="nav-link js-scroll-trigger">
+              Approve Workout Schedules
             </a>
           </li>
           <li class="nav-item">
@@ -67,8 +72,8 @@
         </ul>
         <ul class="ml-lg-auto list-unstyled m-0">
           <li>
-            <a routerLink="/login" class="btn btn-white btn-circled"
-              >Login</a
+            <a (click)="loginLogout()" class="btn btn-white btn-circled" style="color: black;"
+              >{{userRole==1 || userRole ==2?'Logout':'Login'}}</a
             >
           </li>
         </ul>

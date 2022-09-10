@@ -1,11 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectDataService {
+
+  userLogged = new BehaviorSubject(0);
+  //0 - not logged
+  //1 - member
+  //2 - instructor
 
   constructor(private http: HttpClient) { }
 
@@ -60,6 +66,8 @@ export class ProjectDataService {
   getUserPaymentStatus(id){
     return this.http.get<any>(`${environment.apiUrl}userPaymentStatus/${id}`);
   }
+
+
 
 
 }

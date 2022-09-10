@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { ProjectDataService } from 'src/app/core/service/project-data.service';
 export class RegistrationComponent implements OnInit {
 
   public user:any;
+  PaymentType=1;
 
   haveAllergies=false;
 
@@ -37,7 +40,7 @@ userForm : FormGroup = new FormGroup({
 
 
 
-  constructor(private projectDataService:ProjectDataService) { }
+  constructor(private router: Router,private projectDataService:ProjectDataService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -63,7 +66,16 @@ userForm : FormGroup = new FormGroup({
     formData.append('UserRole', this.userForm.controls.UserRole.value);
 
     this.projectDataService.addUser(formData).subscribe(res=>{
-console.log(res);
+//console.log(res);
+const paymentData = new FormData();
+formData.append('UserId', res.id);
+formData.append('PaymentType', this.PaymentType.toString());
+this.projectDataService.addUserPayment(paymentData).subscribe(res=>{
+ // console.log(res);
+ this.toastr.success('Welcome', 'Payment and Signup success!');
+ this.router.navigate(['login']);
+      });
+
     });
   }
 

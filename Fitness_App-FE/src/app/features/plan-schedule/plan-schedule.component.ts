@@ -17,7 +17,7 @@ export class PlanScheduleComponent implements OnInit {
   }
 
   getMealPlanByUserId(){
-    this.projectDataService.getMealPlanByUserId(5).subscribe(res=>{
+    this.projectDataService.getMealPlanByUserId(localStorage.getItem("userId")).subscribe(res=>{
       //this.users=res;
       this.mealplan=res[0];
       console.log(res);

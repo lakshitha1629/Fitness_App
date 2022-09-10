@@ -1,0 +1,46 @@
+<section class="section" id="process">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 text-center">
+          <div class="section-heading">
+            <!-- Heading -->
+            <h2 class="section-title">Workout Schedules</h2>
+          </div>
+  
+  
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Exercise</th>
+          <th scope="col">ScheduleId</th>
+          <th scope="col">RestTime</th>
+          <th scope="col">Kg</th>
+          <th scope="col">Sets</th>
+          <th scope="col">ScheduleTypeName</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let schedule of schedules; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+           
+            {{ schedule.Exercise }}
+          </td>
+          <td>{{ schedule.ScheduleId | number }}</td>
+          <td>{{ schedule.RestTime | number }}</td>
+          <td>{{ schedule.Kg | number }}</td>
+          <td>{{ schedule.Sets  }}</td>
+          <td>{{ schedule.ScheduleTypeName }}</td>
+          <td> <button type="button" (click)="approveSchedule(schedule.ScheduleId)" class="btn btn-success">Approve</button> </td>
+        </tr>
+        </tbody>
+      </table>
+  
+    </div>
+  </section>
+  
+
