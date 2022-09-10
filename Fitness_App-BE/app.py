@@ -86,6 +86,7 @@ class User(Resource):
             _CurrentHeight = request.form['CurrentHeight']
             _BloodType = request.form['BloodType']
             _Allergies = request.form['Allergies']
+            _UserRole = request.form['UserRole']
 
             cursor.execute("SELECT * FROM User WHERE Username=%s", (_Username))
             data = cursor.fetchall()
@@ -94,10 +95,10 @@ class User(Resource):
                 response.status_code = 409
                 return response
             else:
-                insert_user_cmd = """INSERT INTO User(FirstName, MiddleName, LastName, Gender, DOB, HomeAddress, MobileNumber, Email, Username, Password, CurrentWeight, CurrentHeight, BloodType, Allergies) 
-                                    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                insert_user_cmd = """INSERT INTO User(FirstName, MiddleName, LastName, Gender, DOB, HomeAddress, MobileNumber, Email, Username, Password, CurrentWeight, CurrentHeight, BloodType, Allergies, UserRole) 
+                                    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
-                cursor.execute(insert_user_cmd,  (_FirstName, _MiddleName, _LastName, _Gender, _DOB, _HomeAddress, _MobileNumber, _Email, _Username, _PasswordMd5, _CurrentWeight, _CurrentHeight, _BloodType, _Allergies))
+                cursor.execute(insert_user_cmd,  (_FirstName, _MiddleName, _LastName, _Gender, _DOB, _HomeAddress, _MobileNumber, _Email, _Username, _PasswordMd5, _CurrentWeight, _CurrentHeight, _BloodType, _Allergies, _UserRole))
                 conn.commit()
                 response = jsonify(message='User added successfully.', id=cursor.lastrowid)
                 response.status_code = 200
