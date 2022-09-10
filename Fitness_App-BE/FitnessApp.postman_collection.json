@@ -479,7 +479,7 @@
 					"response": []
 				},
 				{
-					"name": "SchedulePlanByUserId",
+					"name": "customizedSchedulePlanByUserId",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -496,6 +496,28 @@
 							"path": [
 								"customizedSchedule",
 								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customizedSchedulePlan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/customizedSchedule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"customizedSchedule"
 							]
 						}
 					},

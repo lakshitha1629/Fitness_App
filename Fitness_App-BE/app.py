@@ -316,6 +316,19 @@ class SchedulePlanByUserId(Resource):
     def post(self):
         return {"error":"Invalid Method."}
 
+class SchedulePlanAll(Resource):
+    def get(self):
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute('select customizedSchedule.*, User.* from customizedSchedule, User WHERE customizedSchedule.UserID = User.UserId')
+        data = cursor.fetchall()
+        data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+        response = jsonify(data)
+        response.status_code = 200
+        return response
+
+    def post(self):
+        return {"error":"Invalid Method."}
 class ApproveSchedulePlan(Resource):
     def get(self):
         return {"error":"Invalid Method."}
@@ -349,6 +362,7 @@ api.add_resource(UserAddPayment,'/userAddPayment')
 api.add_resource(MealPlan,'/mealPlan')
 api.add_resource(GetMealPlanByUserId,'/mealPlan/<int:user_id>')
 api.add_resource(SchedulePlan,'/schedule')
+api.add_resource(SchedulePlanAll,'/customizedSchedule')
 api.add_resource(SchedulePlanByUserId,'/customizedSchedule/<int:user_id>')
 api.add_resource(ApproveSchedulePlan,'/approveCustomizedSchedule')
 
