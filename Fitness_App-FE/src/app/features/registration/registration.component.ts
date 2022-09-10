@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
@@ -11,7 +12,7 @@ import { ProjectDataService } from 'src/app/core/service/project-data.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
+  closeResult = '';
   public user:any;
   PaymentType=1;
 
@@ -40,7 +41,10 @@ userForm : FormGroup = new FormGroup({
 
 
 
-  constructor(private router: Router,private projectDataService:ProjectDataService,private toastr: ToastrService) { }
+  constructor(private router: Router,
+    private projectDataService:ProjectDataService,
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -82,6 +86,24 @@ this.projectDataService.addUserPayment(paymentData).subscribe(res=>{
 
   changeAllergiesState(state:boolean){
     this.haveAllergies=state;
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   

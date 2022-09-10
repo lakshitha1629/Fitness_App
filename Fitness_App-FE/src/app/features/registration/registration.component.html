@@ -108,27 +108,11 @@
               </div>
 
 
-              <div class="form-group">
-                <label for="exampleInputPassword1">Payment</label>
-                <br>
-                <input type="radio" name="Payment" value="HTML" (click)="PaymentType=1">
-                <label > 1 month – Rs.3000
-                </label><br>
-                <input type="radio" name="Payment" value="CSS" (click)="PaymentType=2">
-                <label> 3 month – Rs. 7000
-                </label><br>
-                <input type="radio" name="Payment" value="CSS" (click)="PaymentType=3">
-                <label> 6 month – Rs. 15000
-                </label><br>
-                <input type="radio" name="Payment" value="CSS" (click)="PaymentType=4">
-                <label > 1 year – Rs.24000
-                </label><br>
-                <!-- <input type="text" formControlName="Allergies" *ngIf="haveAllergies" class="form-control form-control-sm" id="exampleInputPassword1"> -->
-              </div>
+  
 
 
 
-              <button type="submit" class="btn btn-primary btn-block" (click)="addUser()">Pay and Sign up</button>
+              <button type="submit" class="btn btn-primary btn-block" (click)="open(content)">Pay and Sign up</button>
 
               <div class="sign-up">
                 Already have an account? <a href="/login">Login</a>
@@ -140,3 +124,110 @@
     </div>
   </div>
 </section>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Payment</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+              <div class="form-group">
+                <div class="alert alert-success">
+                  <h2>
+                  <input type="radio" name="Payment" value="HTML" (click)="PaymentType=1">
+                 1 month – Rs.3000</h2> 
+                
+                </div><br>
+                <div class="alert alert-info">
+                  <h2>
+                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=2">
+                  3 month – Rs. 7000</h2> 
+                
+                </div><br>
+                <div class="alert alert-warning">
+                  <h2>
+                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=3">
+            6 month – Rs. 15000</h2>
+           
+              </div><br>
+                <div class="alert alert-danger">
+                  <h2>
+                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=4">
+                  1 year – Rs.24000</h2> 
+               
+                </div>
+
+               
+                
+              
+                <!-- <input type="text" formControlName="Allergies" *ngIf="haveAllergies" class="form-control form-control-sm" id="exampleInputPassword1"> -->
+              </div>
+      </div>
+    </form>
+    <form class="credit-card">
+      <div class="form-header">
+        <h4 class="title">Credit card detail</h4>
+      </div>
+     
+      <div class="form-body">
+        <!-- Card Number -->
+        <input type="text" class="card-number" placeholder="Card Number" required>
+     
+        <!-- Date Field -->
+        <div class="date-field">
+          <div class="month">
+            <select name="Month" required>
+              <option value="january">January</option>
+              <option value="february">February</option>
+              <option value="march">March</option>
+              <option value="april">April</option>
+              <option value="may">May</option>
+              <option value="june">June</option>
+              <option value="july">July</option>
+              <option value="august">August</option>
+              <option value="september">September</option>
+              <option value="october">October</option>
+              <option value="november">November</option>
+              <option value="december">December</option>
+            </select>
+          </div>
+          <div class="year">
+            <select name="Year" required>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+        </div>
+     
+        <!-- Card Verification Field -->
+        <div class="card-verification">
+          <div class="cvv-input">
+            <input type="text" placeholder="CVV" required>
+          </div>
+          <div class="cvv-details">
+            <p>3 or 4 digits usually found <br> on the signature strip</p>
+          </div>
+        </div>
+     
+        <!-- Buttons -->
+        <button type="submit" class="proceed-btn" (click)="addUser()">Proceed</button>
+        <!-- <button type="submit" class="paypal-btn"><a href="#">Pay With</a></button> -->
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-outline-dark" (click)="addUser()">Pay and Sign up</button> -->
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+  </div>
+
+</ng-template>

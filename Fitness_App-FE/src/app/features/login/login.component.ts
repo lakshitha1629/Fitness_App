@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   getUsers(){
     this.projectDataService.getUsers().subscribe(res=>{
-      //this.users=res;
+      //this.users=res; 
       console.log(res);
       var userId = res.find(x=>x.Username == this.loginForm.controls.Email.value).UserId;
       var userRole = res.find(x=>x.Username == this.loginForm.controls.Email.value).UserRole;
