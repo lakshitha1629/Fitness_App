@@ -76,12 +76,12 @@
 								},
 								{
 									"key": "Email",
-									"value": "lakshitha1629@gmail.com",
+									"value": "lakshitha@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "Username",
-									"value": "Lakshitha1629",
+									"value": "Lakshitha",
 									"type": "text"
 								},
 								{
@@ -354,6 +354,11 @@
 									"key": "RestTime",
 									"value": "1",
 									"type": "text"
+								},
+								{
+									"key": "Reps",
+									"value": "1",
+									"type": "text"
 								}
 							]
 						},
@@ -369,6 +374,38 @@
 							"port": "5000",
 							"path": [
 								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ApproveSchedulePlan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "CustomizedScheduleId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/approveCustomizedSchedule",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"approveCustomizedSchedule"
 							]
 						}
 					},

@@ -86,6 +86,7 @@ class User(Resource):
             _CurrentHeight = request.form['CurrentHeight']
             _BloodType = request.form['BloodType']
             _Allergies = request.form['Allergies']
+            _UserRole = request.form['UserRole']
 
             cursor.execute("SELECT * FROM User WHERE Username=%s", (_Username))
             data = cursor.fetchall()
@@ -94,10 +95,10 @@ class User(Resource):
                 response.status_code = 409
                 return response
             else:
-                insert_user_cmd = """INSERT INTO User(FirstName, MiddleName, LastName, Gender, DOB, HomeAddress, MobileNumber, Email, Username, Password, CurrentWeight, CurrentHeight, BloodType, Allergies) 
-                                    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                insert_user_cmd = """INSERT INTO User(FirstName, MiddleName, LastName, Gender, DOB, HomeAddress, MobileNumber, Email, Username, Password, CurrentWeight, CurrentHeight, BloodType, Allergies, UserRole) 
+                                    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
-                cursor.execute(insert_user_cmd,  (_FirstName, _MiddleName, _LastName, _Gender, _DOB, _HomeAddress, _MobileNumber, _Email, _Username, _PasswordMd5, _CurrentWeight, _CurrentHeight, _BloodType, _Allergies))
+                cursor.execute(insert_user_cmd,  (_FirstName, _MiddleName, _LastName, _Gender, _DOB, _HomeAddress, _MobileNumber, _Email, _Username, _PasswordMd5, _CurrentWeight, _CurrentHeight, _BloodType, _Allergies, _UserRole))
                 conn.commit()
                 response = jsonify(message='User added successfully.', id=cursor.lastrowid)
                 response.status_code = 200
@@ -284,11 +285,12 @@ class SchedulePlan(Resource):
             _Sets = request.form['Sets']
             _Kg = request.form['Kg']
             _RestTime = request.form['RestTime']
+            _Reps = request.form['Reps']
 
-            insert_mealPlan_cmd = """INSERT INTO customizedSchedule(UserId, ScheduleTypeName, Exercise, Sets, Kg, RestTime) 
-                                    VALUES(%s, %s, %s, %s, %s, %s)"""
+            insert_mealPlan_cmd = """INSERT INTO customizedSchedule(UserId, ScheduleTypeName, Exercise, Sets, Kg, RestTime, Reps) 
+                                    VALUES(%s, %s, %s, %s, %s, %s, %s)"""
 
-            cursor.execute(insert_mealPlan_cmd,  (_MemberId, _ScheduleTypeName, _Exercise, _Sets, _Kg, _RestTime))
+            cursor.execute(insert_mealPlan_cmd,  (_MemberId, _ScheduleTypeName, _Exercise, _Sets, _Kg, _RestTime, _Reps))
             conn.commit()
             response = jsonify(message='Schedule plan added successfully.', id=cursor.lastrowid)
             response.status_code = 200
