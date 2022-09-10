@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
@@ -13,44 +14,47 @@ import { ProjectDataService } from 'src/app/core/service/project-data.service';
 })
 export class RegistrationComponent implements OnInit {
   closeResult = '';
-  public user:any;
-  PaymentType=1;
+  public user: any;
+  PaymentType = 1;
 
-  haveAllergies=false;
+  haveAllergies = false;
 
-userForm : FormGroup = new FormGroup({
-  firstName: new FormControl(),
-  middleName: new FormControl(),
-  lastName: new FormControl(),
+  userForm: FormGroup = new FormGroup({
+    firstName: new FormControl(),
+    middleName: new FormControl(),
+    lastName: new FormControl(),
 
-  gender: new FormControl(),
-  dob: new FormControl(),
-  HomeAddress: new FormControl(),
-  MobileNumber: new FormControl(),
-  Username: new FormControl(),
-  Password: new FormControl(),
-  CurrentWeight: new FormControl(),
-  CurrentHeight: new FormControl(),
+    gender: new FormControl(),
+    dob: new FormControl(),
+    HomeAddress: new FormControl(),
+    MobileNumber: new FormControl(),
+    Username: new FormControl(),
+    Password: new FormControl(),
+    CurrentWeight: new FormControl(),
+    CurrentHeight: new FormControl(),
 
-  BloodType: new FormControl(),
-  Allergies: new FormControl(),
-  UserRole: new FormControl(),
+    BloodType: new FormControl(),
+    Allergies: new FormControl(),
+    UserRole: new FormControl(),
 
-  Email: new FormControl(),
-});
+    Email: new FormControl(),
+  });
 
 
 
   constructor(private router: Router,
-    private projectDataService:ProjectDataService,
+    private projectDataService: ProjectDataService,
     private toastr: ToastrService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
   }
 
-  addUser(){
+  addUser() {
+
+    this.spinner.show();
     const formData = new FormData();
 
     formData.append('FirstName', this.userForm.controls.firstName.value);
@@ -65,31 +69,42 @@ userForm : FormGroup = new FormGroup({
     formData.append('CurrentWeight', this.userForm.controls.CurrentWeight.value);
     formData.append('CurrentHeight', this.userForm.controls.CurrentHeight.value);
     formData.append('BloodType', this.userForm.controls.BloodType.value);
-    formData.append('Allergies', this.haveAllergies?'1':"0");
+    formData.append('Allergies', this.haveAllergies ? '1' : "0");
     formData.append('Email', this.userForm.controls.Email.value);
     formData.append('UserRole', this.userForm.controls.UserRole.value);
 
-    this.projectDataService.addUser(formData).subscribe(res=>{
-//console.log(res);
-const paymentData = new FormData();
-formData.append('UserId', res.id);
-formData.append('PaymentType', this.PaymentType.toString());
-this.projectDataService.addUserPayment(paymentData).subscribe(res=>{
- // console.log(res);
- this.toastr.success('Welcome', 'Payment and Signup success!');
- this.router.navigate(['login']);
-      });
+    this.projectDataService.addUser(formData).subscribe(res => {
+      this.modalService.dismissAll();
+      //console.log(res);
+      const paymentData = new FormData();
+      formData.append('UserId', res.id);
+      formData.append('PaymentType', this.PaymentType.toString());
+      this.projectDataService.addUserPayment(paymentData).subscribe(res => {
+        // console.log(res);
 
-    });
+        this.toastr.success('Welcome', 'Payment and Signup success!');
+        this.router.navigate(['login']);
+      });
+      this.spinner.hide();
+    },
+      error => {
+        this.spinner.hide();
+        this.toastr.error(error.message,'Register Fail!');
+        this.spinner.hide();
+      },
+
+    )
+
+      ;
   }
 
 
-  changeAllergiesState(state:boolean){
-    this.haveAllergies=state;
+  changeAllergiesState(state: boolean) {
+    this.haveAllergies = state;
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -106,6 +121,6 @@ this.projectDataService.addUserPayment(paymentData).subscribe(res=>{
     }
   }
 
-  
+
 
 }
