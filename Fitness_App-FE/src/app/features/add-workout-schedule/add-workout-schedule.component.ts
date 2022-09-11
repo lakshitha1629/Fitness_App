@@ -90,7 +90,7 @@ export class AddWorkoutScheduleComponent implements OnInit {
 
     formData.append('Sets', sets);
     formData.append('Kg', kg);
-    formData.append('RestTime', reps);
+    formData.append('Reps', reps);
     formData.append('RestTime', rest);
 
 
