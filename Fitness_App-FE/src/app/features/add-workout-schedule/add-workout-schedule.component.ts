@@ -74,12 +74,18 @@ export class AddWorkoutScheduleComponent implements OnInit {
   }
 
   getUsers(){
+    this.spinner.show();
     this.projectDataService.getUsers().subscribe(res=>{
       this.users=res;
       console.log(res);
-    });
+      this.spinner.hide();
+    },
+    error => {
+      this.toastr.error(error.error.message, 'error');
+      this.spinner.hide();
+    },
+  );
   }
-
 
   addEx(day:string,ex:string,sets:string,kg:string,reps:string,rest:string){
     const formData = new FormData();

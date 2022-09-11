@@ -55,10 +55,17 @@ export class AddMealPlanComponent implements OnInit {
   }
 
   getUsers(){
+    this.spinner.show();
     this.projectDataService.getUsers().subscribe(res=>{
       this.users=res;
       console.log(res);
-    });
+      this.spinner.hide();
+    },
+    error => {
+      this.toastr.error(error.error.message, 'error');
+      this.spinner.hide();
+    },
+  );
   }
 
 
