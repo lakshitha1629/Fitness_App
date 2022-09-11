@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     //  localStorage.setItem("datas", JSON.stringify(JSONDatas));
       },
       error => {
-        this.toastr.error('Login Fail!', 'your password and username not match');
+        this.toastr.error('Login Fail!', error.error.message);
         this.spinner.hide();
       },
     );
@@ -50,14 +50,20 @@ export class LoginComponent implements OnInit {
   }
 
   getUsers(){
+    this.spinner.show();
     this.projectDataService.getUsers().subscribe(res=>{
       //this.users=res; 
       console.log(res);
+      this.spinner.hide();
       var userId = res.find(x=>x.Username == this.loginForm.controls.Email.value).UserId;
       var userRole = res.find(x=>x.Username == this.loginForm.controls.Email.value).UserRole;
       localStorage.setItem("userId", userId);
       this.projectDataService.userLogged.next(userRole);
       this.router.navigate(['home']);
+    },   (err) => {
+      this.spinner.hide();
+      this.toastr.error(err.error.message, 'error!');
+      console.log(err.error.message)
     });
   }
 

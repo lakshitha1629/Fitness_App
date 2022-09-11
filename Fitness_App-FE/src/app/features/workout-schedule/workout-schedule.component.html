@@ -14,20 +14,23 @@
     <i>Start Date: {{schedule?.StartDate | date}} - End Date: {{schedule?.EndDate | date}}</i>
     <hr> -->
     <div class="row">
-      <div class="col-sm" *ngFor="let item of schedule; index as i;">
-        <div class="card card-ui">
-          <div class="card-body">
-            <h5 class="card-title">{{item?.Exercise}}</h5>
-            <p class="card-text">Day: {{item?.ScheduleTypeName}}</p>
+      <div *ngFor="let item of schedule; index as i;" >
+        <div class="col-sm" *ngIf="item.Status==1">
+          <div class="card card-ui">
+            <div class="card-body">
+              <h5 class="card-title">{{item?.Exercise}}</h5>
+              <p class="card-text">Day: {{item?.ScheduleTypeName}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Sets:{{item?.Sets}}</li>
+              <li class="list-group-item">KG:{{item?.Kg}}</li>
+              <li class="list-group-item">Reps:{{item?.Reps}}</li>
+              <li class="list-group-item">Rest Time:{{item?.RestTime}}mins</li>
+            </ul>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Sets:{{item?.Sets}}</li>
-            <li class="list-group-item">KG:{{item?.Kg}}</li>
-            <li class="list-group-item">Reps:{{item?.Reps}}</li>
-            <li class="list-group-item">Rest Time:{{item?.RestTime}}mins</li>
-          </ul>
         </div>
       </div>
+
 
     </div>
 
