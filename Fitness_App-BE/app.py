@@ -6,15 +6,25 @@ import os
 import prediction
 from flaskext.mysql import MySQL
 import hashlib
+from flask_mail import Mail, Message
 
 mysql = MySQL()
 app = Flask(__name__)
+mail = Mail(app)
 
 app.config['MYSQL_DATABASE_USER'] = 'rmtuser'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Ayozat@RMT%2023'
 app.config['MYSQL_DATABASE_DB'] = 'test_fitness'
 app.config['MYSQL_DATABASE_HOST'] = '109.228.57.45'
 mysql.init_app(app)
+
+# configuration of mail
+app.config['MAIL_SERVER']='smtp-relay.sendinblue.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'smartfitnessgym22@gmail.com'
+app.config['MAIL_PASSWORD'] = 'cIFJrTEMOwG20hzB'
+app.config['MAIL_USE_TLS'] = True
+mail = Mail(app)
 
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 api = Api(app)
@@ -339,13 +349,24 @@ class ApproveSchedulePlan(Resource):
             cursor = conn.cursor()
 
             _CustomizedScheduleId = request.form['CustomizedScheduleId']
-
-            update_approveSchedulePlan_cmd = """UPDATE customizedSchedule SET Status = 1 WHERE CustomizedScheduleId = %s"""
-            cursor.execute(update_approveSchedulePlan_cmd,  (_CustomizedScheduleId))
-            conn.commit()
-            response = jsonify(message='Schedule plan Approved successfully.', id=cursor.lastrowid)
-            response.status_code = 200
-            return response
+            cursor.execute("select User.* from customizedSchedule, User WHERE customizedSchedule.UserID = User.UserId AND CustomizedScheduleId=%s", (_CustomizedScheduleId))
+            data = cursor.fetchall()
+            user_email = data[0][8]
+            print(user_email)
+            if len(data) < 0:
+                response = jsonify(message='Incorrect CustomizedScheduleId!', success=0)
+                response.status_code = 409
+                return response
+            else:
+                msg = Message('Hello, We are  Smart Fitness Team!', sender =   'smartfitnessgym22@gmail.com', recipients = [str(user_email)])
+                msg.body = "Hey, Your workout plan is approved by the coach. You can start your workout now."
+                mail.send(msg)
+                update_approveSchedulePlan_cmd = """UPDATE customizedSchedule SET Status = 1 WHERE CustomizedScheduleId = %s"""
+                cursor.execute(update_approveSchedulePlan_cmd,  (_CustomizedScheduleId))
+                conn.commit()
+                response = jsonify(message='Schedule plan Approved successfully.', id=cursor.lastrowid)
+                response.status_code = 200
+                return response
 
         except Exception as error:
             return {'error': error}
