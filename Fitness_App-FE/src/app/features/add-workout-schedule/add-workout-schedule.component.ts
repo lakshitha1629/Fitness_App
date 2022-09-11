@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
@@ -63,7 +65,9 @@ export class AddWorkoutScheduleComponent implements OnInit {
   });
 
 
-  constructor(private projectDataService:ProjectDataService) { }
+  constructor(private projectDataService:ProjectDataService,
+    private toastr: ToastrService, 
+    private spinner: NgxSpinnerService)  { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -87,13 +91,19 @@ export class AddWorkoutScheduleComponent implements OnInit {
     formData.append('Sets', sets);
     formData.append('Kg', kg);
     formData.append('RestTime', reps);
-    formData.append('Exercise', rest);
+    formData.append('RestTime', rest);
 
 
 
-
+    this.spinner.show();
     this.projectDataService.addWorkoutPlan(formData).subscribe(res=>{
       console.log(res);
+      this.toastr.success('Added', 'Success!');
+      this.spinner.hide();
+    },   (err) => {
+      this.spinner.hide();
+      this.toastr.error(err.error.message, 'error!');
+      console.log(err.error.message)
     });
   }
 

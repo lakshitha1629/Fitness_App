@@ -67,6 +67,10 @@ export class ProjectDataService {
     return this.http.get<any>(`${environment.apiUrl}userPaymentStatus/${id}`);
   }
 
+  getCustomizedSchedule(){
+    return this.http.get<any>(`${environment.apiUrl}customizedSchedule`);
+  }
+
 
 
 

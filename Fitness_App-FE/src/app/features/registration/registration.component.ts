@@ -71,7 +71,7 @@ export class RegistrationComponent implements OnInit {
     formData.append('BloodType', this.userForm.controls.BloodType.value);
     formData.append('Allergies', this.haveAllergies ? '1' : "0");
     formData.append('Email', this.userForm.controls.Email.value);
-    formData.append('UserRole', this.userForm.controls.UserRole.value);
+    formData.append('UserRole', '1');
 
     this.projectDataService.addUser(formData).subscribe(res => {
       this.modalService.dismissAll();
@@ -89,7 +89,7 @@ export class RegistrationComponent implements OnInit {
     },
       error => {
         this.spinner.hide();
-        this.toastr.error(error.message,'Register Fail!');
+        this.toastr.error(error.error.message,'Register Fail!');
         this.spinner.hide();
       },
 

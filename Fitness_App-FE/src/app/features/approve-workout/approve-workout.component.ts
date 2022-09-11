@@ -12,7 +12,16 @@ export class ApproveWorkoutComponent implements OnInit {
   constructor(private projectDataService:ProjectDataService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getSchedulePlans();
+   // this.getSchedulePlans();
+    this.getCustomizedSchedule();
+  }
+
+  getCustomizedSchedule(){
+    this.projectDataService.getCustomizedSchedule().subscribe(res=>{
+      //this.users=res;
+      this.schedules=res;
+      console.log(res);
+    });
   }
 
   getSchedulePlans(){
@@ -30,6 +39,7 @@ export class ApproveWorkoutComponent implements OnInit {
     this.projectDataService.approveSchedulePlan(formData).subscribe(res=>{
       //this.users=res;
      // this.schedules=res;
+     this.getCustomizedSchedule();
      this.toastr.success('Approved', 'Success!');
       console.log(res);
     });

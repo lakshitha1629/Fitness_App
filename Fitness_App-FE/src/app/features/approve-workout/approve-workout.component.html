@@ -10,7 +10,7 @@
   
         </div>
       </div>
-      <table class="table table-striped">
+      <!-- <table class="table table-striped">
         <thead>
         <tr>
           <th scope="col">#</th>
@@ -38,7 +38,57 @@
           <td> <button type="button" (click)="approveSchedule(schedule.ScheduleId)" class="btn btn-success">Approve</button> </td>
         </tr>
         </tbody>
-      </table>
+      </table> -->
+<div class="row">
+  <div class="col-12">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">DOB</th>
+
+        <th scope="col">Kg</th>
+        <th scope="col">Sets</th>
+        <th scope="col">Reps</th>
+        <th scope="col">RestTime</th>
+        <th scope="col">Gender</th>
+
+        <th scope="col">Exercise</th>
+        <th scope="col">Height</th>
+        <th scope="col">Weight</th>
+        <th scope="col">BloodType</th>
+        <th scope="col">Allergies</th>
+        <th scope="col">Day</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let schedule of schedules; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+
+        <td>{{ schedule.FirstName +' '+ schedule.LastName}}</td>
+        <td>{{ schedule.DOB | date }}</td>
+        <td>{{ schedule.Kg | number }}</td>
+        <td>{{ schedule.Sets  }}</td>
+        <td>{{ schedule.Reps  }}</td>
+        <td>{{ schedule.RestTime  }}</td>
+        <td>{{ schedule.Gender  }}</td>
+
+        <td>{{ schedule.Exercise  }}</td>
+        <td>{{ schedule.CurrentHeight  }}</td>
+        <td>{{ schedule.CurrentWeight  }}</td>
+        <td>{{ schedule.BloodType  }}</td>
+        <td>{{ schedule.Allergies==1?'yes':'no'  }}</td>
+        <td>{{ schedule.ScheduleTypeName }}</td>
+        <td> <button type="button" (click)="approveSchedule(schedule.CustomizedScheduleId)" class="{{schedule.Status==0?'btn btn-danger':'btn btn-success'}}">{{schedule.Status==0?'Approve':'Approved'}}</button> </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
   
     </div>
   </section>
