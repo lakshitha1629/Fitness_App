@@ -1,4 +1,5 @@
-<section class="section" id="process">
+<section class="section" id="process" >
+  <div aria-live="polite" toastContainer></div>
   <div class="container">
     <div class="global-container">
       <div class="card login-form">
@@ -27,9 +28,11 @@
 
               <div class="form-group">
                 <label for="exampleInputEmail1">Gender</label>
-                <input type="email" formControlName="gender" class="form-control form-control-sm"
-                  id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <select type="number" [(ngModel)]="selectedGender" aria-placeholder="Select Gender" style="width: -webkit-fill-available;" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let gender of genders" [ngValue]="gender">{{gender.name}}</option>
+                  </select>
               </div>
+
               <div class="form-group">
                 <label for="exampleInputEmail1">Date of Birth</label>
                 <input type="date" formControlName="dob" class="form-control form-control-sm" id="exampleInputEmail1"
@@ -136,25 +139,25 @@
               <div class="form-group">
                 <div class="alert alert-success">
                   <h2>
-                  <input type="radio" name="Payment" value="HTML" (click)="PaymentType=1">
+                  <input type="radio" name="Payment" value="HTML" (click)="paymentTypeSelect(1)">
                  1 month – Rs.3000</h2> 
                 
                 </div><br>
                 <div class="alert alert-info">
                   <h2>
-                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=2">
+                  <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(2)">
                   3 month – Rs. 7000</h2> 
                 
                 </div><br>
                 <div class="alert alert-warning">
                   <h2>
-                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=3">
+                  <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(3)">
             6 month – Rs. 15000</h2>
            
               </div><br>
                 <div class="alert alert-danger">
                   <h2>
-                  <input type="radio" name="Payment" value="CSS" (click)="PaymentType=4">
+                  <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(4)">
                   1 year – Rs.24000</h2> 
                
                 </div>

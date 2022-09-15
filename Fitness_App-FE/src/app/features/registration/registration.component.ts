@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 import { ProjectDataService } from 'src/app/core/service/project-data.service';
 
 @Component({
@@ -13,6 +13,8 @@ import { ProjectDataService } from 'src/app/core/service/project-data.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild(ToastContainerDirective, { static: true })
+  toastContainer: ToastContainerDirective;
   closeResult = '';
   public user: any;
   PaymentType = 1;
@@ -40,6 +42,15 @@ export class RegistrationComponent implements OnInit {
     Email: new FormControl(),
   });
 
+  genders:Array<Object> = [
+      {num: 0, name: "Male"},
+      {num: 1, name: "Female"}
+  ];
+
+
+  selectedGender =  this.genders[0];
+ 
+
 
 
   constructor(private router: Router,
@@ -49,7 +60,7 @@ export class RegistrationComponent implements OnInit {
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-
+    this.toastr.overlayContainer = this.toastContainer;
   }
 
   addUser() {
@@ -60,7 +71,7 @@ export class RegistrationComponent implements OnInit {
     formData.append('FirstName', this.userForm.controls.firstName.value);
     formData.append('MiddleName', this.userForm.controls.middleName.value);
     formData.append('LastName', this.userForm.controls.lastName.value);
-    formData.append('Gender', this.userForm.controls.gender.value);
+    formData.append('Gender', this.selectedGender['name']);
     formData.append('DOB', this.userForm.controls.dob.value);
     formData.append('HomeAddress', this.userForm.controls.HomeAddress.value);
     formData.append('MobileNumber', this.userForm.controls.MobileNumber.value);
@@ -75,22 +86,30 @@ export class RegistrationComponent implements OnInit {
 
     this.projectDataService.addUser(formData).subscribe(res => {
       this.modalService.dismissAll();
-      //console.log(res);
+    //  console.log(res.id);
       const paymentData = new FormData();
-      formData.append('UserId', res.id);
-      formData.append('PaymentType', this.PaymentType.toString());
+      paymentData.append('UserId', res.id);
+      paymentData.append('PaymentType', this.PaymentType.toString());
       this.projectDataService.addUserPayment(paymentData).subscribe(res => {
         // console.log(res);
 
         this.toastr.success('Welcome', 'Payment and Signup success!');
         this.router.navigate(['login']);
-      });
-      this.spinner.hide();
+        this.spinner.hide();
+      },
+      error => {
+        this.spinner.hide();
+        this.toastr.error(error.error.message,'Payment Fail!');
+      
+      }
+      );
+    
+    
     },
       error => {
         this.spinner.hide();
         this.toastr.error(error.error.message,'Register Fail!');
-        this.spinner.hide();
+      
       },
 
     )
@@ -119,6 +138,12 @@ export class RegistrationComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+
+  paymentTypeSelect(id){
+    this.PaymentType=id;
+    console.log(this.PaymentType)
   }
 
 
