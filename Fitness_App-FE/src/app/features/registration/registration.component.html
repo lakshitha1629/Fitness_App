@@ -12,17 +12,17 @@
               <h3 class="card-title text-center">Personal Details</h3>
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="email" formControlName="firstName" class="form-control form-control-sm"
+                <input type="text" formControlName="firstName" class="form-control form-control-sm"
                   id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Middle Name</label>
-                <input type="email" formControlName="middleName" class="form-control form-control-sm"
+                <input type="text" formControlName="middleName" class="form-control form-control-sm"
                   id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Last Name</label>
-                <input type="email" formControlName="lastName" class="form-control form-control-sm"
+                <input type="text" formControlName="lastName" class="form-control form-control-sm"
                   id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
 
@@ -40,19 +40,19 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Home Address</label>
-                <input type="email" formControlName="HomeAddress" class="form-control form-control-sm"
+                <input type="text" formControlName="HomeAddress" class="form-control form-control-sm"
                   id="exampleInputEmail1" aria-describedby="emailHelp">
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Mobile Number</label>
-                <input type="email" formControlName="MobileNumber" class="form-control form-control-sm"
-                  id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" formControlName="MobileNumber" class="form-control form-control-sm"
+                  id="exampleInputEmail1" aria-describedby="emailHelp" required pattern="[- +()0-9]{10,12}">
               </div>
 
 
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" formControlName="Email" class="form-control form-control-sm" id="exampleInputEmail1"
+                <input type="email"  required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" formControlName="Email" class="form-control form-control-sm" id="exampleInputEmail1"
                   aria-describedby="emailHelp">
               </div>
 
@@ -60,7 +60,7 @@
 
               <div class="form-group">
                 <label for="exampleInputUsername">Username</label>
-                <input type="email" formControlName="Username" class="form-control form-control-sm"
+                <input type="text" formControlName="Username" class="form-control form-control-sm"
                   id="exampleInputUsername" aria-describedby="emailHelp">
               </div>
 
@@ -111,7 +111,7 @@
               </div> -->
 
 
-  
+
 
 
 
@@ -140,31 +140,31 @@
                 <div class="alert alert-success">
                   <h2>
                   <input type="radio" name="Payment" value="HTML" (click)="paymentTypeSelect(1)">
-                 1 month – Rs.3000</h2> 
-                
+                 1 month – Rs.3000</h2>
+
                 </div><br>
                 <div class="alert alert-info">
                   <h2>
                   <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(2)">
-                  3 month – Rs. 7000</h2> 
-                
+                  3 month – Rs. 7000</h2>
+
                 </div><br>
                 <div class="alert alert-warning">
                   <h2>
                   <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(3)">
             6 month – Rs. 15000</h2>
-           
+
               </div><br>
                 <div class="alert alert-danger">
                   <h2>
                   <input type="radio" name="Payment" value="CSS" (click)="paymentTypeSelect(4)">
-                  1 year – Rs.24000</h2> 
-               
+                  1 year – Rs.24000</h2>
+
                 </div>
 
-               
-                
-              
+
+
+
                 <!-- <input type="text" formControlName="Allergies" *ngIf="haveAllergies" class="form-control form-control-sm" id="exampleInputPassword1"> -->
               </div>
       </div>
@@ -173,11 +173,11 @@
       <div class="form-header">
         <h4 class="title">Credit card detail</h4>
       </div>
-     
+
       <div class="form-body">
         <!-- Card Number -->
         <input type="text" class="card-number" placeholder="Card Number" required>
-     
+
         <!-- Date Field -->
         <div class="date-field">
           <div class="month">
@@ -210,7 +210,7 @@
             </select>
           </div>
         </div>
-     
+
         <!-- Card Verification Field -->
         <div class="card-verification">
           <div class="cvv-input">
@@ -220,7 +220,7 @@
             <p>3 or 4 digits usually found <br> on the signature strip</p>
           </div>
         </div>
-     
+
         <!-- Buttons -->
         <button type="submit" class="proceed-btn" (click)="addUser()">Proceed</button>
         <!-- <button type="submit" class="paypal-btn"><a href="#">Pay With</a></button> -->
