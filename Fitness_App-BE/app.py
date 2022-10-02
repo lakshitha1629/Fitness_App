@@ -16,6 +16,10 @@ app.config['MYSQL_DATABASE_USER'] = 'rmtuser'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Ayozat@RMT%2023'
 app.config['MYSQL_DATABASE_DB'] = 'test_fitness'
 app.config['MYSQL_DATABASE_HOST'] = '109.228.57.45'
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = ''
+# app.config['MYSQL_DATABASE_DB'] = 'fitness_app'
+# app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
 mysql.init_app(app)
 
 # configuration of mail
