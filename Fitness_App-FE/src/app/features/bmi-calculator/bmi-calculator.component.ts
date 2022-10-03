@@ -32,11 +32,24 @@ export class BmiCalculatorComponent implements OnInit {
     Q3: new FormControl('')
   });
 
+  weightTypes =[
+    'Extremely Weak',
+    'Weak',
+    'Normal',
+    'Obesity',
+    'Overweight',
+    'Extreme Obesity'
+  ]
+
+  sampleOutput='Overweight';
+  public schedules;
+
   constructor(private projectDataService: ProjectDataService,
     private router:Router,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.schedules=this.projectDataService.getSchedules();
   }
 
   resetProject() {
