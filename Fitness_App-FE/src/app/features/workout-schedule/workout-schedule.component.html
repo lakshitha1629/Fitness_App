@@ -34,34 +34,5 @@
 
     </div>
 
-    <div *ngFor="let schedule of schedules; index as i">
-      <br />
-     <h2>{{ schedule.name }}</h2>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Exercise</th>
-            <th scope="col">Sets</th>
-            <th scope="col">Kg</th>
-            <th scope="col">Rest Time(min)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let workout of schedule.data; index as i">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>
-              {{ workout.name }}
-            </td>
-            <td>{{ workout.sets }}</td>
-            <td>{{ workout.kg }}</td>
-            <td>{{ workout.restTime }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-
   </div>
 </section>
