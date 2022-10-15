@@ -84,38 +84,47 @@
 
       <div [ngbNavOutlet]="nav" class="mt-5"></div>
     </div>
+<div *ngIf="Output">
+  <div class="row justify-content-md-center">
+    <div>
+      <h2 class="badge badge-warning" style="font-size: 24px">
+        {{ Output }}
+      </h2>
+    </div>
+  </div>
+  <div *ngFor="let schedule of schedules; index as i">
 
-    <div *ngFor="let schedule of schedules; index as i">
+    <div *ngIf="schedule.name.split(' ')[0]==Output.split(' ')[0];">
+      <br />
+      <h2>{{ schedule.name }}</h2>
 
-      <div *ngIf="schedule.name.split(' ')[0]==sampleOutput.split(' ')[0];">
-        <br />
-        <h2>{{ schedule.name }}</h2>
-
-         <table class="table table-striped">
-           <thead>
-             <tr>
-               <th scope="col">#</th>
-               <th scope="col">Exercise</th>
-               <th scope="col">Sets</th>
-               <th scope="col">Kg</th>
-               <th scope="col">Rest Time(min)</th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr *ngFor="let workout of schedule.data; index as i">
-               <th scope="row">{{ i + 1 }}</th>
-               <td>
-                 {{ workout.name }}
-               </td>
-               <td>{{ workout.sets }}</td>
-               <td>{{ workout.kg }}</td>
-               <td>{{ workout.restTime }}</td>
-             </tr>
-           </tbody>
-         </table>
-
-      </div>
+       <table class="table table-striped">
+         <thead>
+           <tr>
+             <th scope="col">#</th>
+             <th scope="col">Exercise</th>
+             <th scope="col">Sets</th>
+             <th scope="col">Kg</th>
+             <th scope="col">Rest Time(min)</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let workout of schedule.data; index as i">
+             <th scope="row">{{ i + 1 }}</th>
+             <td>
+               {{ workout.name }}
+             </td>
+             <td>{{ workout.sets }}</td>
+             <td>{{ workout.kg }}</td>
+             <td>{{ workout.restTime }}</td>
+           </tr>
+         </tbody>
+       </table>
 
     </div>
+
+  </div>
+</div>
+
   </div>
 </section>
