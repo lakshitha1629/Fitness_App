@@ -10,6 +10,7 @@ import { RegistrationComponent } from './features/registration/registration.comp
 import { AddMealPlanComponent } from './features/add-meal-plan/add-meal-plan.component';
 import { AddWorkoutScheduleComponent } from './features/add-workout-schedule/add-workout-schedule.component';
 import { ApproveWorkoutComponent } from './features/approve-workout/approve-workout.component';
+import { ReportComponent } from './features/report/report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'report',
+    component: ReportComponent,
   },
   {
     path: 'add-meal-plan',

@@ -27,7 +27,8 @@ import { RegistrationComponent } from './features/registration/registration.comp
 import { AddMealPlanComponent } from './features/add-meal-plan/add-meal-plan.component';
 import { AddWorkoutScheduleComponent } from './features/add-workout-schedule/add-workout-schedule.component';
 import { ToastrModule } from 'ngx-toastr';
-import { ApproveWorkoutComponent } from './features/approve-workout/approve-workout.component'; //Works
+import { ApproveWorkoutComponent } from './features/approve-workout/approve-workout.component';
+import { ReportComponent } from './features/report/report.component'; //Works
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { ApproveWorkoutComponent } from './features/approve-workout/approve-work
     RegistrationComponent,
     AddMealPlanComponent,
     AddWorkoutScheduleComponent,
-    ApproveWorkoutComponent
+    ApproveWorkoutComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

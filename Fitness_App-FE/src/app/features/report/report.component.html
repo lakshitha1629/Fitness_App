@@ -1,0 +1,77 @@
+<section class="section" id="process">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 text-center">
+        <div class="section-heading">
+          <!-- Heading -->
+          <h2 class="section-title">All User Details</h2>
+        </div>
+
+
+      </div>
+    </div>
+    <!-- <h2>{{schedule?.SelectDays}}</h2>
+    <i>Start Date: {{schedule?.StartDate | date}} - End Date: {{schedule?.EndDate | date}}</i>
+    <hr> -->
+    <div class="row">
+      <div class="row">
+        <div class="col-12">
+
+          <button type="button" class="btn btn-info" (click)="downloadReport()">Download report</button>
+          <table class="table table-striped" id="user-report-table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Home Address</th>
+              <th scope="col">Mobile Number</th>
+              <th scope="col">Email</th>
+
+              <th scope="col">Kg</th>
+              <th scope="col">Sets</th>
+              <th scope="col">Reps</th>
+              <th scope="col">RestTime</th>
+              <th scope="col">Gender</th>
+
+              <th scope="col">Exercise</th>
+              <th scope="col">Height</th>
+              <th scope="col">Weight</th>
+              <th scope="col">BloodType</th>
+              <th scope="col">Allergies</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let user of users; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+
+              <td>{{ user.FirstName +' '+ user.MiddleName +' '+ user.LastName}}</td>
+              <td>{{ user.DOB | date }}</td>
+              <td>{{ user.HomeAddress  }}</td>
+              <td>{{ user.MobileNumber  }}</td>
+              <td>{{ user.Email  }}</td>
+
+              <td>{{ user.Kg | number }}</td>
+              <td>{{ user.Sets  }}</td>
+              <td>{{ user.Reps  }}</td>
+              <td>{{ user.RestTime  }}</td>
+              <td>{{ user.Gender  }}</td>
+
+              <td>{{ user.Exercise  }}</td>
+              <td>{{ user.CurrentHeight  }}</td>
+              <td>{{ user.CurrentWeight  }}</td>
+              <td>{{ user.BloodType  }}</td>
+              <td>{{ user.Allergies==1?'yes':'no'  }}</td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</section>

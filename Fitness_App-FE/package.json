@@ -37,6 +37,8 @@
     "font-awesome": "^4.7.0",
     "google-maps": "^4.3.3",
     "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.25",
     "lodash.clonedeep": "^4.5.0",
     "msal": "^1.4.9",
     "ng-bootstrap-form-validation": "^9.0.1",

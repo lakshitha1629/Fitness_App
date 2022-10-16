@@ -64,6 +64,11 @@
               Approve Workout Schedules
             </a>
           </li>
+          <li class="nav-item" *ngIf="userRole==2 || userRole == 3">
+            <a routerLink="/report" class="nav-link js-scroll-trigger">
+              User Details Report
+            </a>
+          </li>
           <li class="nav-item">
             <a routerLink="/about" class="nav-link js-scroll-trigger">
               About
