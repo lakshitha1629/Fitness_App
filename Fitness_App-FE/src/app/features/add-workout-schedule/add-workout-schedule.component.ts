@@ -17,6 +17,8 @@ export class AddWorkoutScheduleComponent implements OnInit {
   haveC=false;
   haveFD=false;
   haveDinner=false;
+  userId = 0;
+  userRole=0;
 
   users:any;
 
@@ -35,7 +37,7 @@ export class AddWorkoutScheduleComponent implements OnInit {
     StartDate: new FormControl(),
     EndDate: new FormControl(),
     SelectDays: new FormControl(),
-  
+
     BCsets: new FormControl(),
     BCkg: new FormControl(),
     BCreps: new FormControl(),
@@ -56,7 +58,7 @@ export class AddWorkoutScheduleComponent implements OnInit {
     Creps: new FormControl(),
     Crest: new FormControl(),
 
-    
+
     FDsets: new FormControl(),
     FDkg: new FormControl(),
     FDreps: new FormControl(),
@@ -66,11 +68,19 @@ export class AddWorkoutScheduleComponent implements OnInit {
 
 
   constructor(private projectDataService:ProjectDataService,
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService)  { }
 
   ngOnInit(): void {
+    this.userId = parseInt(localStorage.getItem('userId'));
     this.getUsers();
+    this.checkLogged();
+  }
+
+  checkLogged(){
+    this.projectDataService.userLogged.subscribe(res => {
+      this.userRole=res;
+    });
   }
 
   getUsers(){
@@ -89,8 +99,11 @@ export class AddWorkoutScheduleComponent implements OnInit {
 
   addEx(day:string,ex:string,sets:string,kg:string,reps:string,rest:string){
     const formData = new FormData();
-
-    formData.append('MemberId', this.workoutForm.controls.MemberId.value);
+    if(this.userRole == 1){
+      formData.append('MemberId', this.userId.toString());
+    }else{
+      formData.append('MemberId', this.workoutForm.controls.MemberId.value);
+    }
     formData.append('ScheduleTypeName', day);
     formData.append('Exercise', ex);
 

@@ -16,7 +16,8 @@ export class AddMealPlanComponent implements OnInit {
   haveLunch=false;
   haveAfternoonSnacks=false;
   haveDinner=false;
-
+  userId = 0;
+  userRole=0;
   users:any;
 
   days={
@@ -34,7 +35,7 @@ export class AddMealPlanComponent implements OnInit {
     StartDate: new FormControl(),
     EndDate: new FormControl(),
     SelectDays: new FormControl(),
-  
+
     Breakfast: new FormControl(),
     MidMorningSnacks: new FormControl(),
     Lunch: new FormControl(),
@@ -47,11 +48,19 @@ export class AddMealPlanComponent implements OnInit {
 
 
   constructor(private projectDataService:ProjectDataService,
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService)  { }
 
   ngOnInit(): void {
+    this.userId = parseInt(localStorage.getItem('userId'));
     this.getUsers();
+    this.checkLogged();
+  }
+
+  checkLogged(){
+    this.projectDataService.userLogged.subscribe(res => {
+      this.userRole=res;
+    });
   }
 
   getUsers(){
@@ -71,8 +80,11 @@ export class AddMealPlanComponent implements OnInit {
 
   addMealPlan(){
     const formData = new FormData();
-
-    formData.append('MemberId', this.mealForm.controls.MemberId.value);
+    if(this.userRole == 1){
+      formData.append('MemberId', this.userId.toString());
+    }else{
+      formData.append('MemberId', this.mealForm.controls.MemberId.value);
+    }
     formData.append('StartDate', this.mealForm.controls.StartDate.value);
     formData.append('EndDate', this.mealForm.controls.EndDate.value);
     formData.append('SelectDays', this.getSelectedDates());
@@ -92,7 +104,7 @@ export class AddMealPlanComponent implements OnInit {
       this.toastr.success('Added', 'Success!');
       this.spinner.hide();
 
-      
+
     },
     (err) => {
       this.spinner.hide();

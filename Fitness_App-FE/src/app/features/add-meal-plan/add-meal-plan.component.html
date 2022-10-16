@@ -10,7 +10,7 @@
                 <div class="col-sm">
 
                   <form [formGroup]="mealForm">
-                    <div class="row">
+                    <div class="row" *ngIf="userRole!=1">
                         <div class="col-4">
                             Select Member
                         </div>
@@ -18,7 +18,7 @@
                             <select formControlName="MemberId">
 
                                 <option *ngFor="let user of users;" value="{{user['UserId']}}">{{user["FirstName"]+' '+user["LastName"]}}</option>
-                               
+
                             </select>
                         </div>
                     </div>

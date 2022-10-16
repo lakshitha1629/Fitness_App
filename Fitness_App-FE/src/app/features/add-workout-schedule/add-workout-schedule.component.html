@@ -10,7 +10,7 @@
                 <div class="col-sm">
 
                   <form [formGroup]="workoutForm">
-                    <div class="row">
+                    <div class="row" *ngIf="userRole!=1">
                         <div class="col-4">
                             Select Member
                         </div>
@@ -18,7 +18,7 @@
                             <select formControlName="MemberId">
 
                                 <option *ngFor="let user of users;" value="{{user['UserId']}}">{{user["FirstName"]+' '+user["LastName"]}}</option>
-                               
+
                             </select>
                         </div>
                     </div>
@@ -99,14 +99,14 @@
                                         <div class="col-6">
                                          Sets   <input type="text" formControlName="BCsets" class="form-control form-control-sm" >
                                          KG   <input type="text" formControlName="BCkg" class="form-control form-control-sm" >
-                                 
+
                                         </div>
                                         <div class="col-6">
                                           Reps  <input type="text" formControlName="BCreps" class="form-control form-control-sm" >
                                           Rest Time  <input type="text" formControlName="BCrest" class="form-control form-control-sm" >
                                         </div>
                                     </div>
-                                      
+
                                   </div>
 
                                   <div class="form-group">
@@ -116,14 +116,14 @@
                                         <div class="col-6">
                                          Sets   <input type="text" formControlName="FWsets" class="form-control form-control-sm" >
                                          KG   <input type="text" formControlName="FWkg" class="form-control form-control-sm" >
-                                 
+
                                         </div>
                                         <div class="col-6">
                                           Reps  <input type="text" formControlName="FWreps" class="form-control form-control-sm" >
                                           Rest Time  <input type="text" formControlName="FWrest" class="form-control form-control-sm" >
                                         </div>
                                     </div>
-                                      
+
                                   </div>
 
                                   <div class="form-group">
@@ -133,14 +133,14 @@
                                         <div class="col-6">
                                          Sets   <input type="text" formControlName="Psets" class="form-control form-control-sm" >
                                          KG   <input type="text" formControlName="Pkg" class="form-control form-control-sm" >
-                                 
+
                                         </div>
                                         <div class="col-6">
                                           Reps  <input type="text" formControlName="Preps" class="form-control form-control-sm" >
                                           Rest Time  <input type="text" formControlName="Prest" class="form-control form-control-sm" >
                                         </div>
                                     </div>
-                                      
+
                                   </div>
 
                                   <div class="form-group">
@@ -150,14 +150,14 @@
                                         <div class="col-6">
                                          Sets   <input type="text" formControlName="Csets" class="form-control form-control-sm" >
                                          KG   <input type="text" formControlName="Ckg" class="form-control form-control-sm" >
-                                 
+
                                         </div>
                                         <div class="col-6">
                                           Reps  <input type="text" formControlName="Creps" class="form-control form-control-sm" >
                                           Rest Time  <input type="text" formControlName="Crest" class="form-control form-control-sm" >
                                         </div>
                                     </div>
-                                      
+
                                   </div>
 
                                   <div class="form-group">
@@ -167,14 +167,14 @@
                                         <div class="col-6">
                                          Sets   <input type="text" formControlName="FDsets" class="form-control form-control-sm" >
                                          KG   <input type="text" formControlName="FDkg" class="form-control form-control-sm" >
-                                 
+
                                         </div>
                                         <div class="col-6">
                                           Reps  <input type="text" formControlName="FDreps" class="form-control form-control-sm" >
                                           Rest Time  <input type="text" formControlName="FDrest" class="form-control form-control-sm" >
                                         </div>
                                     </div>
-                                      
+
                                   </div>
 
 
