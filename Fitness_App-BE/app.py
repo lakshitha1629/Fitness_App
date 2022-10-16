@@ -12,14 +12,14 @@ mysql = MySQL()
 app = Flask(__name__)
 mail = Mail(app)
 
-app.config['MYSQL_DATABASE_USER'] = 'rmtuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Ayozat@RMT%2023'
-app.config['MYSQL_DATABASE_DB'] = 'test_fitness'
-app.config['MYSQL_DATABASE_HOST'] = '109.228.57.45'
-# app.config['MYSQL_DATABASE_USER'] = 'root'
-# app.config['MYSQL_DATABASE_PASSWORD'] = ''
-# app.config['MYSQL_DATABASE_DB'] = 'fitness_app'
-# app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
+# app.config['MYSQL_DATABASE_USER'] = 'rmtuser'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'Ayozat@RMT%2023'
+# app.config['MYSQL_DATABASE_DB'] = 'test_fitness'
+# app.config['MYSQL_DATABASE_HOST'] = '109.228.57.45'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_DB'] = 'fitness_app'
+app.config['MYSQL_DATABASE_HOST'] = '127.0.0.1'
 mysql.init_app(app)
 
 # configuration of mail
@@ -378,6 +378,20 @@ class ApproveSchedulePlan(Resource):
         finally:
             conn.close()
 
+class adminUserReport(Resource):
+    def get(self):
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute('select customizedSchedule.*, User.*, MealPlan.* from customizedSchedule, MealPlan, User WHERE customizedSchedule.UserID = User.UserId AND MealPlan.UserId = User.UserId')
+        data = cursor.fetchall()
+        data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
+        response = jsonify(data)
+        response.status_code = 200
+        return response
+
+    def post(self):
+        return {"error":"Invalid Method."}
+
 api.add_resource(Test,'/')
 api.add_resource(GetPredictionOutput,'/getPredictionOutput')
 api.add_resource(User,'/user')
@@ -390,6 +404,7 @@ api.add_resource(SchedulePlan,'/schedule')
 api.add_resource(SchedulePlanAll,'/customizedSchedule')
 api.add_resource(SchedulePlanByUserId,'/customizedSchedule/<int:user_id>')
 api.add_resource(ApproveSchedulePlan,'/approveCustomizedSchedule')
+api.add_resource(adminUserReport,'/adminUserReport')
 
 if __name__ == '__main__':
     app.run(debug=True)
