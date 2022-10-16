@@ -120,6 +120,23 @@
         </div>
 
       </div>
+
+      <div class="row justify-content-md-center" >
+        <div>
+          <h2 style="font-size: 18px">
+            Add your Own Custom Workout Schedule here
+          </h2>
+          <br/>
+          <button routerLink="/login" class="btn btn-dark" *ngIf="userRole==0">
+            Add Custom Workout Schedule
+          </button>
+          <button routerLink="/add-workout-schedule" class="btn btn-dark" *ngIf="userRole==1 || userRole ==2">
+            Add Custom Workout Schedule
+          </button>
+          <p *ngIf="userRole==3">This function not allowed this user role</p>
+        </div>
+      </div>
+
     </div>
 
   </div>

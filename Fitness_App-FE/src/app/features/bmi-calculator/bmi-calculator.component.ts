@@ -25,6 +25,7 @@ export class BmiCalculatorComponent implements OnInit {
   yellowDotsCount: number = 0;
   Output: number;
   imageUploadBoolean:number = 0;
+  userRole=0;
 
   formGroup: FormGroup = new FormGroup({
     Q1: new FormControl(''),
@@ -50,6 +51,13 @@ export class BmiCalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.schedules=this.projectDataService.getSchedules();
+    this.checkLogged();
+  }
+
+  checkLogged(){
+    this.projectDataService.userLogged.subscribe(res => {
+      this.userRole=res;
+    });
   }
 
   resetProject() {
