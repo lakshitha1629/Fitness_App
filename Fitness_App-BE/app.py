@@ -382,7 +382,7 @@ class adminUserReport(Resource):
     def get(self):
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute('select customizedSchedule.*, User.*, MealPlan.* from customizedSchedule, MealPlan, User WHERE customizedSchedule.UserID = User.UserId AND MealPlan.UserId = User.UserId')
+        cursor.execute('select customizedSchedule.*, User.*, MealPlan.* from customizedSchedule, MealPlan, User WHERE customizedSchedule.UserID = User.UserId OR MealPlan.UserId = User.UserId')
         data = cursor.fetchall()
         data = [dict(zip([key[0] for key in cursor.description], row)) for row in data]
         response = jsonify(data)
